@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Day {{CAPSTONE_DAY}} · {{COURSE}}</title>
+<link rel="icon" href="https://sdaiaacademy.github.io/slides/img/academy.svg">
+<link rel="stylesheet" href="https://sdaiaacademy.github.io/slides/deck.css">
+</head>
+<body>
+<div class="deck" data-course="{{COURSE}}" data-track="{{TRACK}}" data-day="Day {{CAPSTONE_DAY}}">
+
+<section class="slide title" data-label="Capstone day">
+  <div class="kicker">SDAIA Academy · {{COURSE}}</div>
+  <h1>Capstone Project Presentations</h1>
+  <p class="lead mt">Day {{CAPSTONE_DAY}}: show what you built, defend your decisions, learn from everyone else's</p>
+  <div class="meta">
+    <span class="track">{{TRACK_NAME}}</span>
+    <span>{{PRESENTERS}} presentations</span>
+    <span>{{TALK_MIN}} min talk + demo · {{QA_MIN}} min Q&amp;A</span>
+  </div>
+  <aside class="notes">Welcome back. Today is theirs: keep your own talking to the opening and the closing. Confirm the running order and the demo setup (screen sharing, API keys, backups) during session 1.</aside>
+</section>
+
+<section class="slide" data-label="Agenda">
+  <div class="kicker">Today</div>
+  <h2>Four sessions of presentations</h2>
+  <div class="agenda">
+    <div class="item now"><div><b>Session 1 · Expectations and final prep</b><small>scoring, rehearsal, first presentations</small></div><div class="d">1–{{S1_LAST}}</div></div>
+    <div class="item brk">Break</div>
+    <div class="item"><div><b>Session 2 · Presentations</b></div><div class="d">{{S2_RANGE}}</div></div>
+    <div class="item brk">Long break</div>
+    <div class="item"><div><b>Session 3 · Presentations</b></div><div class="d">{{S3_RANGE}}</div></div>
+    <div class="item brk">Break</div>
+    <div class="item"><div><b>Session 4 · Final presentations, review and closing</b></div><div class="d">{{S4_RANGE}}</div></div>
+  </div>
+</section>
+
+<section class="slide section" data-session="S1 · Expectations">
+  <div class="kicker">Session 1</div>
+  <h1>Expectations and final prep</h1>
+  <ul class="bullets outcomes">
+    <li>What a strong presentation shows</li>
+    <li>How the rubric scores it</li>
+    <li>Rehearse, record a backup, then present</li>
+  </ul>
+  <div class="sess-no">01</div>
+</section>
+
+<section class="slide" data-label="Rubric">
+  <div class="kicker">How presentations are scored</div>
+  <h2>The rubric</h2>
+  <div class="bars">
+    <div class="row"><span>Working system and live demo</span><div class="bar c-teal" style="--w:100%"></div><span class="val">25%</span></div>
+    <div class="row"><span>Design decisions</span><div class="bar c-cyan" style="--w:100%"></div><span class="val">25%</span></div>
+    <div class="row"><span>Evaluation and error analysis</span><div class="bar c-coral" style="--w:80%"></div><span class="val">20%</span></div>
+    <div class="row"><span>Governance and operability</span><div class="bar c-purple" style="--w:80%"></div><span class="val">20%</span></div>
+    <div class="row"><span>Presentation and reproducibility</span><div class="bar c-amber" style="--w:40%"></div><span class="val">10%</span></div>
+  </div>
+  <div class="callout tip mt"><b>Show results from at least two measured runs.</b> A claim without a number is a plan, not a result.</div>
+  <aside class="notes">Walk through each criterion with one concrete example of what full marks look like. Remind everyone the demo must be live; the recording is only the backup.</aside>
+</section>
+
+<section class="slide" data-label="Format">
+  <div class="kicker">Format</div>
+  <h2>{{TALK_MIN}} minutes to present, {{QA_MIN}} to answer</h2>
+  <div class="cols cols-3">
+    <div class="card c-teal"><h4>1 · The problem</h4><p class="small mb0">Who, what, why now. One slide.</p></div>
+    <div class="card c-cyan"><h4>2 · What you built</h4><p class="small mb0">Architecture, decisions, trade-offs. Then the live demo.</p></div>
+    <div class="card c-coral"><h4>3 · What you measured</h4><p class="small mb0">Baseline, improvement, failures you found, what you would do next.</p></div>
+  </div>
+  <div class="callout note mt"><b>Peer feedback.</b> After each talk, everyone writes one strength, one question and one suggestion.</div>
+</section>
+
+<section class="slide order" data-label="Running order">
+  <div class="kicker">Running order</div>
+  <h2>Who presents when</h2>
+  <table class="t small">
+    <tr><th>#</th><th>Presenter</th><th>Project</th><th>Session</th></tr>
+    <tr><td>1</td><td><input placeholder="name"></td><td><input placeholder="project"></td><td>1</td></tr>
+    <tr><td>2</td><td><input placeholder="name"></td><td><input placeholder="project"></td><td>1</td></tr>
+    <tr><td>3</td><td><input placeholder="name"></td><td><input placeholder="project"></td><td>2</td></tr>
+    <tr><td>4</td><td><input placeholder="name"></td><td><input placeholder="project"></td><td>2</td></tr>
+    <tr><td>5</td><td><input placeholder="name"></td><td><input placeholder="project"></td><td>3</td></tr>
+    <tr><td>6</td><td><input placeholder="name"></td><td><input placeholder="project"></td><td>3</td></tr>
+    <tr><td>7</td><td><input placeholder="name"></td><td><input placeholder="project"></td><td>4</td></tr>
+    <tr><td>8</td><td><input placeholder="name"></td><td><input placeholder="project"></td><td>4</td></tr>
+  </table>
+  <aside class="notes">Type the names in during session 1; the inputs are editable live and are not saved, so take a photo or keep the list in your notes too.</aside>
+</section>
+
+<section class="slide break" data-label="Final prep">
+  <div class="kicker">Before the first presentation</div>
+  <h1>20-minute break</h1>
+  <div class="timer" data-minutes="20"></div>
+  <p class="lead">Rehearse once, record a backup, check the demo on this screen.</p>
+</section>
+
+<section class="slide dark presenting" data-label="Now presenting">
+  <div class="kicker center">Now presenting</div>
+  <div class="center"><input placeholder="Presenter · project"></div>
+  <div class="timers mt">
+    <div><h3>Talk + demo</h3><div class="timer" data-minutes="{{TALK_MIN}}"></div></div>
+    <div><h3>Q&amp;A</h3><div class="timer" data-minutes="{{QA_MIN}}"></div></div>
+  </div>
+  <aside class="notes">Type the presenter's name, press T to start the talk timer (click the second timer's button for Q&A). Duplicate this slide once per presenter, or reuse it and retype the name.</aside>
+</section>
+
+<section class="slide break" data-label="Break">
+  <div class="kicker">Session 1 is over</div>
+  <h1>10-minute break</h1>
+  <div class="timer" data-minutes="10"></div>
+</section>
+
+<section class="slide section" data-session="S2 · Presentations">
+  <div class="kicker">Session 2</div>
+  <h1>Presentations</h1>
+  <p class="lead">Presenters {{S2_RANGE}}</p>
+  <div class="sess-no">02</div>
+</section>
+
+<!-- a "now presenting" slide per presenter, then the break; repeat for sessions 3 and 4 -->
+
+<section class="slide break" data-label="Break">
+  <div class="kicker">Mid-day</div>
+  <h1>20-minute break</h1>
+  <div class="timer" data-minutes="20"></div>
+</section>
+
+<section class="slide section" data-session="S3 · Presentations">
+  <div class="kicker">Session 3</div>
+  <h1>Presentations</h1>
+  <p class="lead">Presenters {{S3_RANGE}}</p>
+  <div class="sess-no">03</div>
+</section>
+
+<section class="slide break" data-label="Break">
+  <div class="kicker">Session 3 is over</div>
+  <h1>10-minute break</h1>
+  <div class="timer" data-minutes="10"></div>
+</section>
+
+<section class="slide section" data-session="S4 · Closing">
+  <div class="kicker">Session 4</div>
+  <h1>Final presentations, review and closing</h1>
+  <p class="lead">Presenters {{S4_RANGE}}, then the review</p>
+  <div class="sess-no">04</div>
+</section>
+
+<section class="slide" data-label="Review">
+  <div class="kicker">Instructor review</div>
+  <h2>What the week showed</h2>
+  <div class="cols cols-3">
+    <div class="card c-teal"><h4>Strongest patterns</h4><p class="small mb0">What several projects got right.</p></div>
+    <div class="card c-coral"><h4>Common gaps</h4><p class="small mb0">What most projects would fix next.</p></div>
+    <div class="card c-purple"><h4>One surprise</h4><p class="small mb0">Something nobody expected.</p></div>
+  </div>
+  <aside class="notes">Fill these in during the last break from your scoring notes. Name projects for strengths; keep gaps anonymous.</aside>
+</section>
+
+<section class="slide" data-label="What next">
+  <div class="kicker">After the course</div>
+  <h2>Keep going</h2>
+  <ul class="bullets">
+    <li><b>Your repo stays yours:</b> keep it reproducible and add the next improvement you named today</li>
+    <li><b>Next Academy course:</b> {{NEXT_COURSE}}</li>
+    <li><b>Community and sources:</b> the README of this course lists every source we used</li>
+  </ul>
+</section>
+
+<section class="slide section" data-label="Thank you">
+  <div class="kicker">SDAIA Academy</div>
+  <h1>Thank you</h1>
+  <p class="lead">{{COURSE}} · <span class="ar">{{COURSE_AR}}</span></p>
+</section>
+
+</div>
+<script src="https://sdaiaacademy.github.io/slides/deck.js"></script>
+</body>
+</html>

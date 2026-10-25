@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>اليوم {{CAPSTONE_DAY}} · {{COURSE_AR}}</title>
+<link rel="icon" href="https://sdaiaacademy.github.io/slides/img/academy.svg">
+<link rel="stylesheet" href="https://sdaiaacademy.github.io/slides/deck.css">
+</head>
+<body>
+<div class="deck" data-course="{{COURSE_AR}}" data-track="{{TRACK}}" data-day="اليوم {{CAPSTONE_DAY}}">
+
+<section class="slide title" data-label="يوم المشروع الختامي">
+  <div class="kicker">أكاديمية سدايا · {{COURSE_AR}}</div>
+  <h1>عروض المشروع الختامي</h1>
+  <p class="lead mt">اليوم {{CAPSTONE_DAY}}: اعرض ما بنيته، ودافع عن قراراتك، وتعلّم من عروض الآخرين</p>
+  <div class="meta">
+    <span class="track">{{TRACK_NAME_AR}}</span>
+    <span>{{PRESENTERS}} عرضًا</span>
+    <span>{{TALK_MIN}} دقائق عرض وتجربة حية · {{QA_MIN}} دقيقة أسئلة</span>
+  </div>
+  <aside class="notes">رحّب بالعائدين. اليوم لهم: اقصر كلامك على الافتتاح والختام. تأكّد من ترتيب العروض وتجهيزات التجربة الحية في الجلسة الأولى.</aside>
+</section>
+
+<section class="slide" data-label="جدول اليوم">
+  <div class="kicker">اليوم</div>
+  <h2>أربع جلسات من العروض</h2>
+  <div class="agenda">
+    <div class="item now"><div><b>الجلسة 1 · التوقعات والتحضير الأخير</b><small>معايير التقييم، تدريب أخير، ثم أول العروض</small></div><div class="d">1–{{S1_LAST}}</div></div>
+    <div class="item brk">استراحة</div>
+    <div class="item"><div><b>الجلسة 2 · العروض</b></div><div class="d">{{S2_RANGE}}</div></div>
+    <div class="item brk">استراحة طويلة</div>
+    <div class="item"><div><b>الجلسة 3 · العروض</b></div><div class="d">{{S3_RANGE}}</div></div>
+    <div class="item brk">استراحة</div>
+    <div class="item"><div><b>الجلسة 4 · آخر العروض والمراجعة والختام</b></div><div class="d">{{S4_RANGE}}</div></div>
+  </div>
+</section>
+
+<section class="slide section" data-session="ج1 · التوقعات">
+  <div class="kicker">الجلسة 1</div>
+  <h1>التوقعات والتحضير الأخير</h1>
+  <ul class="bullets outcomes">
+    <li>ما الذي يُظهره العرض القوي</li>
+    <li>كيف تُقيَّم المعايير</li>
+    <li>تدرّب، سجّل نسخة احتياطية، ثم اعرض</li>
+  </ul>
+  <div class="sess-no">01</div>
+</section>
+
+<section class="slide" data-label="معايير التقييم">
+  <div class="kicker">كيف تُقيَّم العروض</div>
+  <h2>معايير التقييم</h2>
+  <div class="bars">
+    <div class="row"><span>قيمة مقيسة في تجربتين على الأقل</span><div class="bar c-teal" style="--w:100%"></div><span class="val">25%</span></div>
+    <div class="row"><span>تصميم الحل وقراراته</span><div class="bar c-cyan" style="--w:80%"></div><span class="val">20%</span></div>
+    <div class="row"><span>الوصف والتوثيق</span><div class="bar c-coral" style="--w:80%"></div><span class="val">20%</span></div>
+    <div class="row"><span>التحقق والمسؤولية</span><div class="bar c-purple" style="--w:60%"></div><span class="val">15%</span></div>
+    <div class="row"><span>العرض والتجربة الحية</span><div class="bar c-amber" style="--w:40%"></div><span class="val">20%</span></div>
+  </div>
+  <div class="callout tip mt"><b>اعرض نتائج من تجربتين مقيستين على الأقل.</b> الادعاء بلا رقم خطة لا نتيجة.</div>
+</section>
+
+<section class="slide order" data-label="ترتيب العروض">
+  <div class="kicker">ترتيب العروض</div>
+  <h2>من يعرض ومتى</h2>
+  <table class="t small">
+    <tr><th>#</th><th>المشارك</th><th>المشروع</th><th>الجلسة</th></tr>
+    <tr><td>1</td><td><input placeholder="الاسم"></td><td><input placeholder="المشروع"></td><td>1</td></tr>
+    <tr><td>2</td><td><input placeholder="الاسم"></td><td><input placeholder="المشروع"></td><td>1</td></tr>
+    <tr><td>3</td><td><input placeholder="الاسم"></td><td><input placeholder="المشروع"></td><td>2</td></tr>
+    <tr><td>4</td><td><input placeholder="الاسم"></td><td><input placeholder="المشروع"></td><td>2</td></tr>
+    <tr><td>5</td><td><input placeholder="الاسم"></td><td><input placeholder="المشروع"></td><td>3</td></tr>
+    <tr><td>6</td><td><input placeholder="الاسم"></td><td><input placeholder="المشروع"></td><td>3</td></tr>
+    <tr><td>7</td><td><input placeholder="الاسم"></td><td><input placeholder="المشروع"></td><td>4</td></tr>
+    <tr><td>8</td><td><input placeholder="الاسم"></td><td><input placeholder="المشروع"></td><td>4</td></tr>
+  </table>
+  <aside class="notes">اكتب الأسماء في الجلسة الأولى؛ الحقول قابلة للتحرير أثناء العرض ولا تُحفظ، فاحتفظ بنسخة في ملاحظاتك.</aside>
+</section>
+
+<section class="slide break" data-label="التحضير الأخير">
+  <div class="kicker">قبل أول عرض</div>
+  <h1>استراحة 20 دقيقة</h1>
+  <div class="timer" data-minutes="20"></div>
+  <p class="lead">تدرّب مرة، وسجّل نسخة احتياطية، وجرّب العرض على هذه الشاشة.</p>
+</section>
+
+<section class="slide dark presenting" data-label="يعرض الآن">
+  <div class="kicker center">يعرض الآن</div>
+  <div class="center"><input placeholder="المشارك · المشروع"></div>
+  <div class="timers mt">
+    <div><h3>العرض والتجربة</h3><div class="timer" data-minutes="{{TALK_MIN}}"></div></div>
+    <div><h3>الأسئلة</h3><div class="timer" data-minutes="{{QA_MIN}}"></div></div>
+  </div>
+  <aside class="notes">اكتب اسم المشارك واضغط T لتشغيل مؤقّت العرض. كرّر هذه الشريحة لكل مشارك، أو أعد استخدامها بتغيير الاسم.</aside>
+</section>
+
+<section class="slide break" data-label="استراحة">
+  <div class="kicker">انتهت الجلسة 1</div>
+  <h1>استراحة 10 دقائق</h1>
+  <div class="timer" data-minutes="10"></div>
+</section>
+
+<section class="slide section" data-session="ج2 · العروض">
+  <div class="kicker">الجلسة 2</div>
+  <h1>العروض</h1>
+  <p class="lead">المشاركون {{S2_RANGE}}</p>
+  <div class="sess-no">02</div>
+</section>
+
+<!-- شريحة «يعرض الآن» لكل مشارك، ثم الاستراحة؛ وتتكرر للجلستين 3 و4 -->
+
+<section class="slide break" data-label="استراحة">
+  <div class="kicker">منتصف اليوم</div>
+  <h1>استراحة 20 دقيقة</h1>
+  <div class="timer" data-minutes="20"></div>
+</section>
+
+<section class="slide section" data-session="ج3 · العروض">
+  <div class="kicker">الجلسة 3</div>
+  <h1>العروض</h1>
+  <p class="lead">المشاركون {{S3_RANGE}}</p>
+  <div class="sess-no">03</div>
+</section>
+
+<section class="slide break" data-label="استراحة">
+  <div class="kicker">انتهت الجلسة 3</div>
+  <h1>استراحة 10 دقائق</h1>
+  <div class="timer" data-minutes="10"></div>
+</section>
+
+<section class="slide section" data-session="ج4 · الختام">
+  <div class="kicker">الجلسة 4</div>
+  <h1>آخر العروض والمراجعة والختام</h1>
+  <p class="lead">المشاركون {{S4_RANGE}}، ثم المراجعة</p>
+  <div class="sess-no">04</div>
+</section>
+
+<section class="slide" data-label="المراجعة">
+  <div class="kicker">مراجعة المدرّب</div>
+  <h2>ما أظهره الأسبوع</h2>
+  <div class="cols cols-3">
+    <div class="card c-teal"><h4>أقوى الأنماط</h4><p class="small mb0">ما أحسنته عدة مشاريع.</p></div>
+    <div class="card c-coral"><h4>الفجوات الشائعة</h4><p class="small mb0">ما ستصلحه معظم المشاريع تاليًا.</p></div>
+    <div class="card c-purple"><h4>مفاجأة واحدة</h4><p class="small mb0">ما لم يتوقعه أحد.</p></div>
+  </div>
+</section>
+
+<section class="slide" data-label="ما بعد الدورة">
+  <div class="kicker">بعد الدورة</div>
+  <h2>خطة 1 و7 و30</h2>
+  <ul class="bullets">
+    <li><b>غدًا:</b> طبّق ما تعلمته على مهمة واحدة حقيقية</li>
+    <li><b>خلال أسبوع:</b> قِس الوقت الموفَّر وسجّله</li>
+    <li><b>خلال شهر:</b> شارك النتيجة مع فريقك، والدورة التالية: {{NEXT_COURSE}}</li>
+  </ul>
+</section>
+
+<section class="slide section" data-label="شكرًا">
+  <div class="kicker">أكاديمية سدايا</div>
+  <h1>شكرًا</h1>
+  <p class="lead">{{COURSE_AR}}</p>
+</section>
+
+</div>
+<script src="https://sdaiaacademy.github.io/slides/deck.js"></script>
+</body>
+</html>

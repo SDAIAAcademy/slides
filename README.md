@@ -60,7 +60,7 @@ Every course belongs to one of the Academy's five tracks. `data-track` takes the
 | Key | Track | المسار | Accent |
 |---|---|---|---|
 | `fluency` | Data & AI Fluency: using AI at work and in study | مسار الطلاقة في البيانات والذكاء الاصطناعي | teal |
-| `foundations` | Data & AI Foundations: Python and mathematics for data and AI | مسار أساسيات البيانات والذكاء الاصطناعي | green |
+| `foundations` | Data & AI Foundations: the common core (Python and mathematics for data and AI) that both AI Engineering and Data Science build on | مسار أساسيات البيانات والذكاء الاصطناعي | green |
 | `ai-engineering` | AI Engineering, the main engineering track (includes data engineering) | مسار هندسة الذكاء الاصطناعي | amber |
 | `data-science` | Data Science: analysis, statistics, optimization, experimentation, advanced ML | مسار علم البيانات | cyan |
 | `executives` | Executives & Leaders | مسار التنفيذيين والقادة | coral |

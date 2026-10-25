@@ -11,9 +11,9 @@ goes stale. Add every new course to this file.
 | Key | Track | Audience and purpose | Language so far |
 |---|---|---|---|
 | `fluency` | Data & AI Fluency | Employees and undergraduates who use AI applications; no code | Arabic |
-| `foundations` | Data & AI Foundations | Python and mathematics for data and AI | (none yet) |
-| `ai-engineering` | AI Engineering | Developers and engineers: NLP, agents, data engineering, deployment | English |
-| `data-science` | Data Science | Analysis, statistics, optimization, experimentation, advanced ML | (none yet) |
+| `foundations` | Data & AI Foundations | The common core both engineering tracks build on: Python and mathematics for data and AI; a prerequisite for AI Engineering and Data Science | (none yet) |
+| `ai-engineering` | AI Engineering | The main engineering track: NLP, agents, data engineering, deployment (builds on Foundations) | English |
+| `data-science` | Data Science | Analysis, statistics, optimization, experimentation, advanced ML (builds on Foundations) | (none yet) |
 | `executives` | Executives & Leaders | Decision makers: strategy, governance, value, risk | (none yet) |
 
 ## AI Productivity · رفع الإنتاجية بالذكاء الاصطناعي (`productivity`, fluency, Arabic RTL)
