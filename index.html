@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SDAIA Academy slide system</title>
+<link rel="icon" href="img/academy.svg">
+<link rel="stylesheet" href="page.css">
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="logo" id="logo"></div>
+    <div class="kicker">SDAIA Academy · Shared course shell</div>
+    <h1>Slide system</h1>
+    <span class="sub" lang="ar" dir="rtl" style="text-align:left">نظام الشرائح المشترك لدورات أكاديمية سدايا</span>
+    <p>One slide engine, one course-page style and one lab-page style, served from this repository to every SDAIA Academy course. Change a colour or fix a bug here and every course gets it; course content stays in its own repository.</p>
+    <div class="meta">
+      <span class="track">SDAIA Academy</span>
+      <span>English and Arabic (RTL)</span>
+      <span>Plain HTML, no build step</span>
+      <span>GitHub Pages</span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <h2>Demo decks</h2>
+  <p>Every component on one deck, in both directions. Press <code>?</code> inside a deck for the keys. Add <code>?check</code> to the URL to run the layout self-check.</p>
+  <div class="grid">
+    <div class="card c-amber"><h3>English demo</h3><p>Left to right, AI Engineering track colours. Title, agenda, sections, cards, tables, code, flows, stats, quiz, prompts, traces, the ladder, a lab slide, break timers and the capstone slides.</p><p><a class="btn" href="demo/en.html">Open the deck →</a></p></div>
+    <div class="card c-teal"><h3 lang="ar" dir="rtl">العرض التجريبي العربي</h3><p>Right to left, Fluency track colours. The same deck in Arabic: mirrored layout, Arabic interface strings, arrow keys that follow the reading direction.</p><p><a class="btn" href="demo/ar.html">افتح العرض ←</a></p></div>
+  </div>
+
+  <h2>Tracks</h2>
+  <p>Every course belongs to one of the Academy's five tracks. A deck declares its track with <code>data-track</code> and the system supplies the localized name and the accent colour.</p>
+  <div class="scroll"><table>
+    <tr><th>Key</th><th>Track</th><th lang="ar" dir="rtl">المسار</th><th>Accent</th></tr>
+    <tr><td><code>fluency</code></td><td>Data &amp; AI Fluency: how to use AI at work and in study</td><td lang="ar" dir="rtl">مسار الطلاقة في البيانات والذكاء الاصطناعي</td><td><span class="pill" style="color:#00ae8d">● teal</span></td></tr>
+    <tr><td><code>foundations</code></td><td>Data &amp; AI Foundations: Python and mathematics for data and AI</td><td lang="ar" dir="rtl">مسار أساسيات البيانات والذكاء الاصطناعي</td><td><span style="color:#6abf4b">● green</span></td></tr>
+    <tr><td><code>ai-engineering</code></td><td>AI Engineering: the main engineering track, including data engineering</td><td lang="ar" dir="rtl">مسار هندسة الذكاء الاصطناعي</td><td><span style="color:#ffb548">● amber</span></td></tr>
+    <tr><td><code>data-science</code></td><td>Data Science: analysis, statistics, optimization, experimentation, advanced ML</td><td lang="ar" dir="rtl">مسار علم البيانات</td><td><span style="color:#00c1de">● cyan</span></td></tr>
+    <tr><td><code>executives</code></td><td>Executives &amp; Leaders</td><td lang="ar" dir="rtl">مسار التنفيذيين والقادة</td><td><span style="color:#e96852">● coral</span></td></tr>
+  </table></div>
+
+  <h2>Files</h2>
+  <div class="scroll"><table>
+    <tr><th>File</th><th>Used by</th><th>What it does</th></tr>
+    <tr><td><code>deck.css</code></td><td>slide decks</td><td>The 1600×900 stage, the chrome, every slide component, the track colours, the RTL mirror, print styles. Imports the fonts and the code theme.</td></tr>
+    <tr><td><code>deck.js</code></td><td>slide decks</td><td>Scaling, navigation, speaker notes, overview, help, break timers, quizzes, lazy syntax highlighting, the self-check. Embeds the logo and the track names.</td></tr>
+    <tr><td><code>page.css</code></td><td>course pages (<code>index.html</code>)</td><td>Header, cards, day tables, rubric bars, file lists, in both directions.</td></tr>
+    <tr><td><code>lab.css</code></td><td>lab guide pages</td><td>Header, goal box, timed steps, prompts with copy buttons, callouts, tables, checks.</td></tr>
+    <tr><td><code>academy.js</code></td><td>course and lab pages</td><td>Fills <code>#logo</code> with the Academy logo and adds a copy button to every <code>.prompt</code>.</td></tr>
+    <tr><td><code>img/academy.svg</code></td><td>all pages</td><td>The favicon.</td></tr>
+  </table></div>
+
+  <h2>Use it in a course</h2>
+  <p>A deck needs one stylesheet and one script. Course name, track and day come from data attributes; the language and direction come from the <code>html</code> element.</p>
+<pre class="code"><code>&lt;!doctype html&gt;
+&lt;html lang="en"&gt;                       &lt;!-- Arabic: &lt;html lang="ar" dir="rtl"&gt; --&gt;
+&lt;head&gt;
+&lt;meta charset="utf-8"&gt;
+&lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+&lt;title&gt;Day 1 · My Course&lt;/title&gt;
+&lt;link rel="icon" href="https://sdaiaacademy.github.io/slides/img/academy.svg"&gt;
+&lt;link rel="stylesheet" href="https://sdaiaacademy.github.io/slides/deck.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div class="deck" data-course="My Course" data-track="ai-engineering" data-day="Day 1"&gt;
+  &lt;section class="slide title"&gt; … &lt;/section&gt;
+  &lt;section class="slide"&gt; … &lt;aside class="notes"&gt;…&lt;/aside&gt;&lt;/section&gt;
+&lt;/div&gt;
+&lt;script src="https://sdaiaacademy.github.io/slides/deck.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+  <div class="two">
+    <div>
+      <h3>Always the latest</h3>
+      <p>Link to <code>https://sdaiaacademy.github.io/slides/…</code>. Every push to <code>main</code> reaches every course within a minute or two.</p>
+    </div>
+    <div>
+      <h3>Pinned to a release</h3>
+      <p>When a course must not change, link to a tag through jsDelivr: <code>https://cdn.jsdelivr.net/gh/SDAIAAcademy/slides@v1.0.0/deck.css</code>. Move the pin when ready.</p>
+    </div>
+  </div>
+
+  <h2>Course-building skill</h2>
+  <p>The <code>skill/</code> folder is a Claude Code skill for building a new Academy course: it researches the topic, checks overlap with the existing courses, proposes an outline in the Academy's format, then builds the repository (course page, decks, labs, README with sources) on this slide system. Install it with a junction or symlink into <code>~/.claude/skills/sdaia-course</code>.</p>
+
+  <h2>Courses on this system</h2>
+  <ul>
+    <li><a href="https://sdaiaacademy.github.io/productivity/">AI Productivity</a> · Data &amp; AI Fluency · Arabic</li>
+    <li><a href="https://sdaiaacademy.github.io/applied-nlp/">Applied NLP Engineering</a> · AI Engineering</li>
+    <li><a href="https://sdaiaacademy.github.io/agentic-ai/">Agentic AI Systems Engineering</a> · AI Engineering</li>
+    <li><a href="https://sdaiaacademy.github.io/data-engineering/">Modern Data Engineering</a> · AI Engineering</li>
+  </ul>
+</main>
+<footer><div class="wrap">SDAIA Academy · <a href="https://github.com/SDAIAAcademy/slides">github.com/SDAIAAcademy/slides</a></div></footer>
+<script src="academy.js"></script>
+</body>
+</html>
