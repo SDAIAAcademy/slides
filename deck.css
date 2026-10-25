@@ -149,10 +149,14 @@ ul.bullets ul { margin: 6px 0 0; padding-left: 26px; font-size: .86em; color: va
 /* ---------- cards ---------- */
 /* Boxes keep a uniform 1px border and draw their accent strip as an inset shadow: mixed border widths on a rounded
    box leave small corner artifacts when the stage is scaled. */
-/* Rounded boxes and chips also clip to their own radius: some GPU renderers paint the background as a plain rectangle
-   under the scaled stage, which shows as small squares in the corners. */
-.card, .callout, .prompt, .quiz .opt, .trace .ev, .chat .msg, .tools span, .pill, .legend span, .slide.title .meta span,
-.lab-tag, .nb, .timer-btns button { overflow: hidden; }
+/* Rounded boxes and chips also clip their painting to their own radius (clip-path, which changes no layout): some GPU
+   renderers paint the background as a plain rectangle under the scaled stage, which shows as small squares in the corners. */
+.card, .chat .msg { clip-path: inset(0 round 18px); }
+.callout, .prompt { clip-path: inset(0 round 16px); }
+.quiz .opt { clip-path: inset(0 round 14px); }
+.trace .ev, .tools span { clip-path: inset(0 round 12px); }
+.lab-tag, .nb { clip-path: inset(0 round 10px); }
+.pill, .legend span, .slide.title .meta span, .timer-btns button { clip-path: inset(0 round 999px); }
 .card {
   background: #fff; border: 1px solid var(--line); border-radius: 18px;
   padding: 31px 30px 26px; font-size: 24px; line-height: 1.4;
