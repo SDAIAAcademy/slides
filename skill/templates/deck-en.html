@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Day {{DAY}} · {{COURSE}}</title>
+<link rel="icon" href="https://sdaiaacademy.github.io/slides/img/academy.svg">
+<link rel="stylesheet" href="https://sdaiaacademy.github.io/slides/deck.css">
+</head>
+<body>
+<div class="deck" data-course="{{COURSE}}" data-track="{{TRACK}}" data-day="Day {{DAY}}">
+
+<!-- ======================= OPENING ======================= -->
+<section class="slide title" data-label="Welcome">
+  <div class="kicker">SDAIA Academy · {{COURSE}} · <span class="ar">{{COURSE_AR}}</span></div>
+  <h1>{{DAY_TITLE}}</h1>
+  <p class="lead mt">Day {{DAY}}: {{DAY_SUBTITLE}}</p>
+  <div class="meta">
+    <span class="track">{{TRACK_NAME}}</span>
+    <span>{{TEACHING_DAYS}} teaching days + capstone day</span>
+    <span>4 sessions · 4 labs</span>
+    <span>{{AUDIENCE_PILL}}</span>
+  </div>
+  <aside class="notes">Welcome, introduce yourself and the TA. Quick hands-up poll to calibrate pace: who has …? Remind participants of the day rhythm: four sessions, each about 25 minutes of concepts and a 25-minute lab, with breaks in between.</aside>
+</section>
+
+<section class="slide" data-label="Agenda">
+  <div class="kicker">Today</div>
+  <h2>{{DAY_TITLE}}</h2>
+  <div class="agenda">
+    <div class="item now"><div><b>Session 1 · {{S1_TITLE}}</b><small>{{S1_SUMMARY}}</small></div><div class="d">Lab {{DAY}}.1</div></div>
+    <div class="item brk">Break</div>
+    <div class="item"><div><b>Session 2 · {{S2_TITLE}}</b><small>{{S2_SUMMARY}}</small></div><div class="d">Lab {{DAY}}.2</div></div>
+    <div class="item brk">Long break</div>
+    <div class="item"><div><b>Session 3 · {{S3_TITLE}}</b><small>{{S3_SUMMARY}}</small></div><div class="d">Lab {{DAY}}.3</div></div>
+    <div class="item brk">Break</div>
+    <div class="item"><div><b>Session 4 · {{S4_TITLE}}</b><small>{{S4_SUMMARY}}</small></div><div class="d">Lab {{DAY}}.4</div></div>
+  </div>
+</section>
+
+<!-- ======================= SESSION 1 ======================= -->
+<section class="slide section" data-session="S1 · {{S1_TITLE}}">
+  <div class="kicker">Session 1</div>
+  <h1>{{S1_TITLE}}</h1>
+  <ul class="bullets outcomes">
+    <li>Outcome 1: what the participant can do after this session</li>
+    <li>Outcome 2</li>
+    <li>Outcome 3</li>
+  </ul>
+  <div class="sess-no">01</div>
+</section>
+
+<section class="slide">
+  <div class="kicker">The problem</div>
+  <h2>One idea per slide, stated as a sentence</h2>
+  <div class="cols cols-2">
+    <div>
+      <ul class="bullets">
+        <li>At most six bullets, each a complete thought</li>
+        <li><b>Bold</b> the key phrase; use <em>em</em> for the warning tone</li>
+        <li>Numbers come from the real lab run, not from memory</li>
+      </ul>
+    </div>
+    <div class="card c-teal"><h4>In the case study</h4><p class="small mb0">Tie every concept to the course's fictional organisation and its synthetic data.</p></div>
+  </div>
+  <div class="callout warn mt"><b>What goes wrong.</b> Name the failure participants will hit, and how to recognise it.</div>
+  <aside class="notes">Instructor guidance: what to say, the live demo to run, the question to ask the room, and the common failure (with its fix).</aside>
+</section>
+
+<section class="slide">
+  <div class="kicker">Step by step</div>
+  <h2>Build an idea one piece per key press</h2>
+  <div class="flow">
+    <div class="step c-teal"><b>1 · First</b>what happens first</div>
+    <div class="arrow frag" data-frag="b">→</div><div class="step c-cyan frag" data-frag="b"><b>2 · Then</b>the next piece</div>
+    <div class="arrow frag" data-frag="c">→</div><div class="step c-coral frag" data-frag="c"><b>3 · Finally</b>the result</div>
+  </div>
+  <div class="callout tip mt frag"><b>Takeaway.</b> Fragments (class <code>frag</code>) replace "the same slide four times with one more box".</div>
+  <aside class="notes">Press once per piece. Say what each piece adds before revealing the next.</aside>
+</section>
+
+<section class="slide">
+  <div class="kicker">Checkpoint</div>
+  <h2>Click the answer</h2>
+  <div class="quiz">
+    <p class="lead">A question that tests the session's key distinction?</p>
+    <div class="opts">
+      <div class="opt" data-k="A">Distractor that sounds right</div>
+      <div class="opt" data-k="B" data-ok>The correct answer</div>
+      <div class="opt" data-k="C">Distractor</div>
+      <div class="opt" data-k="D">Distractor</div>
+    </div>
+    <div class="callout tip why"><b>Why.</b> One sentence that explains the right answer and why the tempting distractor fails.</div>
+  </div>
+</section>
+
+<section class="slide lab top" data-label="Lab {{DAY}}.1">
+  <div class="cols cols-2 mid">
+    <div>
+      <div class="lab-tag">Lab {{DAY}}.1 · 25 min</div>
+      <h2>{{S1_LAB_TITLE}}</h2>
+      <p class="lead small">What the participant builds and what they take away.</p>
+      <a class="nb" href="{{LAB_BASE}}D{{DAY}}_1_slug.ipynb">D{{DAY}}_1_slug.ipynb</a>
+    </div>
+    <ul class="checklist">
+      <li>Step 1 <span class="min">5 min</span></li>
+      <li>Step 2 <span class="min">5 min</span></li>
+      <li>Step 3 <span class="min">7 min</span></li>
+      <li>Step 4 <span class="min">5 min</span></li>
+      <li>Step 5: record the result <span class="min">3 min</span></li>
+      <li class="stretch">✱ Stretch: an extension for those who finish early</li>
+    </ul>
+  </div>
+  <aside class="notes">Circulate. Typical problems: … If a participant did not finish an earlier lab, point them to the fallback in the notebook.</aside>
+</section>
+
+<section class="slide break" data-label="Break">
+  <div class="kicker">Session 1 is over</div>
+  <h1>10-minute break</h1>
+  <div class="timer" data-minutes="10"></div>
+</section>
+
+<!-- ======================= SESSION 2 ======================= -->
+<section class="slide section" data-session="S2 · {{S2_TITLE}}">
+  <div class="kicker">Session 2</div>
+  <h1>{{S2_TITLE}}</h1>
+  <ul class="bullets outcomes"><li>Outcome 1</li><li>Outcome 2</li><li>Outcome 3</li></ul>
+  <div class="sess-no">02</div>
+</section>
+
+<!-- concept slides, a quiz, the lab slide -->
+
+<section class="slide break" data-label="Break">
+  <div class="kicker">Mid-day</div>
+  <h1>20-minute break</h1>
+  <div class="timer" data-minutes="20"></div>
+</section>
+
+<!-- ======================= SESSION 3 ======================= -->
+<section class="slide section" data-session="S3 · {{S3_TITLE}}">
+  <div class="kicker">Session 3</div>
+  <h1>{{S3_TITLE}}</h1>
+  <ul class="bullets outcomes"><li>Outcome 1</li><li>Outcome 2</li><li>Outcome 3</li></ul>
+  <div class="sess-no">03</div>
+</section>
+
+<!-- concept slides, a quiz, the lab slide -->
+
+<section class="slide break" data-label="Break">
+  <div class="kicker">Session 3 is over</div>
+  <h1>10-minute break</h1>
+  <div class="timer" data-minutes="10"></div>
+</section>
+
+<!-- ======================= SESSION 4 ======================= -->
+<section class="slide section" data-session="S4 · {{S4_TITLE}}">
+  <div class="kicker">Session 4</div>
+  <h1>{{S4_TITLE}}</h1>
+  <ul class="bullets outcomes"><li>Outcome 1</li><li>Outcome 2</li><li>Outcome 3</li></ul>
+  <div class="sess-no">04</div>
+</section>
+
+<!-- concept slides, a quiz, the lab slide -->
+
+<!-- ======================= CLOSING ======================= -->
+<section class="slide" data-label="Wrap-up">
+  <div class="kicker">Day {{DAY}} wrap-up</div>
+  <h2>What you built today</h2>
+  <div class="flow">
+    <div class="step c-teal"><b>Session 1</b>artifact</div><div class="arrow">→</div>
+    <div class="step c-cyan"><b>Session 2</b>artifact</div><div class="arrow">→</div>
+    <div class="step c-coral"><b>Session 3</b>artifact</div><div class="arrow">→</div>
+    <div class="step c-purple"><b>Session 4</b>artifact</div>
+  </div>
+  <div class="cols cols-3 mt">
+    <div class="card c-teal"><h4>Remember</h4><p class="small mb0">The first thing to keep.</p></div>
+    <div class="card c-coral"><h4>Remember</h4><p class="small mb0">The second.</p></div>
+    <div class="card c-purple"><h4>Remember</h4><p class="small mb0">The third.</p></div>
+  </div>
+</section>
+
+<section class="slide dark" data-label="Tomorrow">
+  <div class="kicker">Tomorrow</div>
+  <h2>Day {{NEXT_DAY}}: {{NEXT_DAY_TITLE}}</h2>
+  <div class="cols cols-4 mt">
+    <div class="card c-teal"><h4>Session 1</h4><p class="small mb0">…</p></div>
+    <div class="card c-cyan"><h4>Session 2</h4><p class="small mb0">…</p></div>
+    <div class="card c-coral"><h4>Session 3</h4><p class="small mb0">…</p></div>
+    <div class="card c-purple"><h4>Session 4</h4><p class="small mb0">…</p></div>
+  </div>
+  <aside class="notes">Anything participants must prepare tonight (accounts, installs, reading). Say explicitly that unfinished labs can be finished at home and are not required for tomorrow.</aside>
+</section>
+
+</div>
+<script src="https://sdaiaacademy.github.io/slides/deck.js"></script>
+</body>
+</html>

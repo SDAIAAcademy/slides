@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>اليوم {{DAY}} · {{COURSE_AR}}</title>
+<link rel="icon" href="https://sdaiaacademy.github.io/slides/img/academy.svg">
+<link rel="stylesheet" href="https://sdaiaacademy.github.io/slides/deck.css">
+</head>
+<body>
+<div class="deck" data-course="{{COURSE_AR}}" data-track="{{TRACK}}" data-day="اليوم {{DAY}}">
+
+<!-- ======================= الافتتاح ======================= -->
+<section class="slide title" data-label="الترحيب">
+  <div class="kicker">أكاديمية سدايا · {{COURSE_AR}}</div>
+  <h1>{{DAY_TITLE}}</h1>
+  <p class="lead mt">اليوم {{DAY}}: {{DAY_SUBTITLE}}</p>
+  <div class="meta">
+    <span class="track">{{TRACK_NAME_AR}}</span>
+    <span>{{TEACHING_DAYS}} أيام تدريبية + يوم للمشروع الختامي</span>
+    <span>4 جلسات · 4 تمارين</span>
+    <span>{{AUDIENCE_PILL_AR}}</span>
+  </div>
+  <aside class="notes">رحّب بالمشاركين وعرّف بنفسك وبالمساعد. استطلاع سريع برفع اليد لضبط الإيقاع: من …؟ ذكّر بإيقاع اليوم: أربع جلسات، في كلٍّ نحو 25 دقيقة مفاهيم و25 دقيقة تمرين، وبينها استراحات.</aside>
+</section>
+
+<section class="slide" data-label="جدول اليوم">
+  <div class="kicker">اليوم</div>
+  <h2>{{DAY_TITLE}}</h2>
+  <div class="agenda">
+    <div class="item now"><div><b>الجلسة 1 · {{S1_TITLE}}</b><small>{{S1_SUMMARY}}</small></div><div class="d">التمرين {{DAY}}.1</div></div>
+    <div class="item brk">استراحة</div>
+    <div class="item"><div><b>الجلسة 2 · {{S2_TITLE}}</b><small>{{S2_SUMMARY}}</small></div><div class="d">التمرين {{DAY}}.2</div></div>
+    <div class="item brk">استراحة طويلة</div>
+    <div class="item"><div><b>الجلسة 3 · {{S3_TITLE}}</b><small>{{S3_SUMMARY}}</small></div><div class="d">التمرين {{DAY}}.3</div></div>
+    <div class="item brk">استراحة</div>
+    <div class="item"><div><b>الجلسة 4 · {{S4_TITLE}}</b><small>{{S4_SUMMARY}}</small></div><div class="d">التمرين {{DAY}}.4</div></div>
+  </div>
+</section>
+
+<!-- ======================= الجلسة 1 ======================= -->
+<section class="slide section" data-session="ج1 · {{S1_TITLE}}">
+  <div class="kicker">الجلسة 1</div>
+  <h1>{{S1_TITLE}}</h1>
+  <ul class="bullets outcomes">
+    <li>النتيجة 1: ما يستطيع المشارك فعله بعد هذه الجلسة</li>
+    <li>النتيجة 2</li>
+    <li>النتيجة 3</li>
+  </ul>
+  <div class="sess-no">01</div>
+</section>
+
+<section class="slide">
+  <div class="kicker">المشكلة</div>
+  <h2>فكرة واحدة في كل شريحة، بجملة واحدة</h2>
+  <div class="cols cols-2">
+    <div>
+      <ul class="bullets">
+        <li>ست نقاط على الأكثر، كلٌّ منها فكرة كاملة</li>
+        <li><b>العريض</b> للعبارة المفتاحية؛ و<em>em</em> لنبرة التحذير</li>
+        <li>الأرقام من تشغيل التمرين الحقيقي، لا من الذاكرة</li>
+        <li>الكلمات اللاتينية وأسماء الملفات داخل <span class="en">.en</span></li>
+      </ul>
+    </div>
+    <div class="card c-teal"><h4>في حالة الدورة</h4><p class="small mb0">اربط كل مفهوم بالجهة الافتراضية للدورة وبياناتها الاصطناعية.</p></div>
+  </div>
+  <div class="callout warn mt"><b>ما الذي يسوء.</b> سمِّ الخطأ الذي سيقع فيه المشاركون، وكيف يعرفونه.</div>
+  <aside class="notes">إرشاد المدرّب: ما يُقال، والعرض الحيّ الذي يُشغَّل، والسؤال الذي يُطرح على القاعة، والخطأ الشائع وإصلاحه.</aside>
+</section>
+
+<section class="slide">
+  <div class="kicker">خطوة خطوة</div>
+  <h2>ابنِ الفكرة قطعةً مع كل ضغطة</h2>
+  <div class="flow">
+    <div class="step c-teal"><b>1 · أولًا</b>ما يحدث أولًا</div>
+    <div class="arrow frag" data-frag="b">←</div><div class="step c-cyan frag" data-frag="b"><b>2 · ثم</b>القطعة التالية</div>
+    <div class="arrow frag" data-frag="c">←</div><div class="step c-coral frag" data-frag="c"><b>3 · أخيرًا</b>النتيجة</div>
+  </div>
+  <div class="callout tip mt frag"><b>الخلاصة.</b> الأجزاء (الصنف <code>frag</code>) تستبدل «الشريحة نفسها أربع مرات بصندوق إضافي».</div>
+  <aside class="notes">اضغط مرة لكل قطعة. قل ما تضيفه كل قطعة قبل كشف التالية.</aside>
+</section>
+
+<section class="slide">
+  <div class="kicker">نقطة تحقق</div>
+  <h2>انقر الإجابة</h2>
+  <div class="quiz">
+    <p class="lead">سؤال يختبر التمييز الأساسي في الجلسة؟</p>
+    <div class="opts">
+      <div class="opt" data-k="أ">خيار مُشتِّت يبدو صحيحًا</div>
+      <div class="opt" data-k="ب" data-ok>الإجابة الصحيحة</div>
+      <div class="opt" data-k="ج">خيار مُشتِّت</div>
+      <div class="opt" data-k="د">خيار مُشتِّت</div>
+    </div>
+    <div class="callout tip why"><b>لماذا.</b> جملة واحدة تشرح الإجابة الصحيحة ولماذا يفشل الخيار المُغري.</div>
+  </div>
+</section>
+
+<section class="slide lab top" data-label="التمرين {{DAY}}.1">
+  <div class="cols cols-2 mid">
+    <div>
+      <div class="lab-tag">التمرين {{DAY}}.1 · 25 دقيقة</div>
+      <h2>{{S1_LAB_TITLE}}</h2>
+      <p class="lead small">ما يبنيه المشارك وما يخرج به.</p>
+      <a class="nb" href="../labs/D{{DAY}}_1_slug.html">labs/D{{DAY}}_1_slug.html</a>
+    </div>
+    <ul class="checklist">
+      <li>الخطوة 1 <span class="min">5 د</span></li>
+      <li>الخطوة 2 <span class="min">5 د</span></li>
+      <li>الخطوة 3 <span class="min">7 د</span></li>
+      <li>الخطوة 4 <span class="min">5 د</span></li>
+      <li>الخطوة 5: سجّل النتيجة <span class="min">3 د</span></li>
+      <li class="stretch">✱ إضافي: توسعة لمن ينتهي مبكرًا</li>
+    </ul>
+  </div>
+  <aside class="notes">تجوّل بين المشاركين. المشكلات المعتادة: … إن لم يُكمل مشارك تمرينًا سابقًا، وجّهه إلى البديل في صفحة التمرين.</aside>
+</section>
+
+<section class="slide break" data-label="استراحة">
+  <div class="kicker">انتهت الجلسة 1</div>
+  <h1>استراحة 10 دقائق</h1>
+  <div class="timer" data-minutes="10"></div>
+</section>
+
+<!-- ======================= الجلسة 2 ======================= -->
+<section class="slide section" data-session="ج2 · {{S2_TITLE}}">
+  <div class="kicker">الجلسة 2</div>
+  <h1>{{S2_TITLE}}</h1>
+  <ul class="bullets outcomes"><li>النتيجة 1</li><li>النتيجة 2</li><li>النتيجة 3</li></ul>
+  <div class="sess-no">02</div>
+</section>
+
+<!-- شرائح المفاهيم، ثم اختبار، ثم شريحة التمرين -->
+
+<section class="slide break" data-label="استراحة">
+  <div class="kicker">منتصف اليوم</div>
+  <h1>استراحة 20 دقيقة</h1>
+  <div class="timer" data-minutes="20"></div>
+</section>
+
+<!-- ======================= الجلسة 3 ======================= -->
+<section class="slide section" data-session="ج3 · {{S3_TITLE}}">
+  <div class="kicker">الجلسة 3</div>
+  <h1>{{S3_TITLE}}</h1>
+  <ul class="bullets outcomes"><li>النتيجة 1</li><li>النتيجة 2</li><li>النتيجة 3</li></ul>
+  <div class="sess-no">03</div>
+</section>
+
+<!-- شرائح المفاهيم، ثم اختبار، ثم شريحة التمرين -->
+
+<section class="slide break" data-label="استراحة">
+  <div class="kicker">انتهت الجلسة 3</div>
+  <h1>استراحة 10 دقائق</h1>
+  <div class="timer" data-minutes="10"></div>
+</section>
+
+<!-- ======================= الجلسة 4 ======================= -->
+<section class="slide section" data-session="ج4 · {{S4_TITLE}}">
+  <div class="kicker">الجلسة 4</div>
+  <h1>{{S4_TITLE}}</h1>
+  <ul class="bullets outcomes"><li>النتيجة 1</li><li>النتيجة 2</li><li>النتيجة 3</li></ul>
+  <div class="sess-no">04</div>
+</section>
+
+<!-- شرائح المفاهيم، ثم اختبار، ثم شريحة التمرين -->
+
+<!-- ======================= الختام ======================= -->
+<section class="slide" data-label="خلاصة اليوم">
+  <div class="kicker">خلاصة اليوم {{DAY}}</div>
+  <h2>ما بنيته اليوم</h2>
+  <div class="flow">
+    <div class="step c-teal"><b>الجلسة 1</b>المخرج</div><div class="arrow">←</div>
+    <div class="step c-cyan"><b>الجلسة 2</b>المخرج</div><div class="arrow">←</div>
+    <div class="step c-coral"><b>الجلسة 3</b>المخرج</div><div class="arrow">←</div>
+    <div class="step c-purple"><b>الجلسة 4</b>المخرج</div>
+  </div>
+  <div class="cols cols-3 mt">
+    <div class="card c-teal"><h4>تذكّر</h4><p class="small mb0">أول ما يُحتفظ به.</p></div>
+    <div class="card c-coral"><h4>تذكّر</h4><p class="small mb0">الثاني.</p></div>
+    <div class="card c-purple"><h4>تذكّر</h4><p class="small mb0">الثالث.</p></div>
+  </div>
+</section>
+
+<section class="slide dark" data-label="غدًا">
+  <div class="kicker">غدًا</div>
+  <h2>اليوم {{NEXT_DAY}}: {{NEXT_DAY_TITLE}}</h2>
+  <div class="cols cols-4 mt">
+    <div class="card c-teal"><h4>الجلسة 1</h4><p class="small mb0">…</p></div>
+    <div class="card c-cyan"><h4>الجلسة 2</h4><p class="small mb0">…</p></div>
+    <div class="card c-coral"><h4>الجلسة 3</h4><p class="small mb0">…</p></div>
+    <div class="card c-purple"><h4>الجلسة 4</h4><p class="small mb0">…</p></div>
+  </div>
+  <aside class="notes">ما يلزم المشاركين تحضيره الليلة (حسابات، تثبيتات، قراءة). قل صراحةً إن التمارين غير المكتملة يمكن إكمالها في المنزل وليست شرطًا للغد.</aside>
+</section>
+
+</div>
+<script src="https://sdaiaacademy.github.io/slides/deck.js"></script>
+</body>
+</html>

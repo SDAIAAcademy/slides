@@ -325,7 +325,7 @@
         if (c.scrollWidth > inner + 2) issues.push((i + 1) + ': code line too long by ' + Math.round(c.scrollWidth - inner) + 'px');
       });
     });
-    show(was);
+    show(was, true);  // stay on the starting slide with its fragments revealed (screenshots show the final state)
     const out = document.getElementById('check-report') || document.createElement('pre');
     out.id = 'check-report';
     out.textContent = 'CHECK ' + slides.length + ' slides\n' + (issues.join('\n') || 'OK');

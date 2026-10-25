@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en" data-track="{{TRACK}}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lab {{DAY}}.{{N}} · {{LAB_TITLE}}</title>
+<link rel="icon" href="https://sdaiaacademy.github.io/slides/img/academy.svg">
+<link rel="stylesheet" href="https://sdaiaacademy.github.io/slides/lab.css">
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="top"><div class="logo" id="logo"></div>
+      <nav><a href="../index.html">Course page</a><a href="../slides/day{{DAY}}.html">Day {{DAY}} slides</a><a href="../index.html#labs">All labs</a></nav></div>
+    <div class="tag">Lab {{DAY}}.{{N}} · Day {{DAY}} · Session {{N}}</div>
+    <h1>{{LAB_TITLE}}</h1>
+    <p>One sentence: why this lab, and what changes in the participant's work after it.</p>
+    <div class="meta"><span>25 min</span><span>Solo or pairs</span><span>Tool needed</span><span>Audience</span></div>
+  </div>
+</header>
+<main class="wrap">
+
+<div class="box goal">
+  <h3>You will leave this lab with</h3>
+  <ul>
+    <li>Outcome 1</li>
+    <li>Outcome 2</li>
+    <li>A new line in your progress log</li>
+  </ul>
+</div>
+
+<h2>What you need</h2>
+<div class="files">
+  <a href="files/example.pdf"><b>example.pdf</b><span>what the file is · pages</span></a>
+</div>
+<div class="callout note"><b>Did not finish the previous lab?</b> No problem: use the sample file above instead of what you would have built there.</div>
+
+<h2>Steps</h2>
+<div class="step">
+  <h3>1 · Step title <span class="min">5 min</span></h3>
+  <p>Exactly what the participant does.</p>
+  <div class="prompt" data-tool="ChatGPT · Claude · Gemini">You are <span class="ph">[role]</span>. Using the attached file, <span class="ph">[task]</span>. Give the result as <span class="ph">[format]</span>.</div>
+</div>
+<div class="step">
+  <h3>2 · Step title <span class="min">5 min</span></h3>
+  <p>…</p>
+  <table>
+    <tr><th>Item</th><th>What you found</th></tr>
+    <tr><td>…</td><td class="fill"></td></tr>
+  </table>
+</div>
+<div class="step">
+  <h3>3 · Step title <span class="min">7 min</span></h3>
+  <p>…</p>
+</div>
+<div class="step">
+  <h3>4 · Step title <span class="min">5 min</span></h3>
+  <p>…</p>
+</div>
+<div class="step">
+  <h3>5 · Record the result <span class="min">3 min</span></h3>
+  <p>What goes in the progress log: time before and after, and what was verified.</p>
+</div>
+<div class="step stretch">
+  <h3>✱ Stretch</h3>
+  <p>An extension for those who finish early.</p>
+</div>
+
+<h2>Check yourself</h2>
+<ol class="checks">
+  <li>A question that reveals whether the key idea landed.</li>
+  <li>A question about the trap planted in the file.</li>
+  <li>A judgement question: what would you do if …?</li>
+</ol>
+
+<details class="instructor">
+  <summary>For the instructor</summary>
+  <ul>
+    <li>Answer key: …</li>
+    <li>Traps planted in the files and where they show: …</li>
+    <li>Common participant mistakes and how to handle them: …</li>
+  </ul>
+</details>
+
+<div class="pager"><a href="D{{DAY}}_{{PREV}}_slug.html">← Previous lab</a><a href="D{{DAY}}_{{NEXT}}_slug.html">Next lab →</a></div>
+</main>
+<footer><div class="wrap">SDAIA Academy · {{COURSE}} · Every name, organisation and number in the training files is fictional.</div></footer>
+<script src="https://sdaiaacademy.github.io/slides/academy.js"></script>
+</body>
+</html>
