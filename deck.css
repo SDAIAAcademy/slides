@@ -432,6 +432,8 @@ body.overview .slide.active { outline-color: var(--track-color); }
 /* denser card stacks for crowded slides */
 .stack.dense > * + * { margin-top: 12px; }
 .stack.dense .card { font-size: 21px; padding: 21px 22px 16px; }
+.stack.dense .card.flat { padding: 16px 22px 16px 29px; }
+[dir="rtl"] .stack.dense .card.flat { padding: 16px 29px 16px 22px; }
 
 /* ---------- prompts and conversations (AI Productivity) ---------- */
 /* .prompt: a prompt the participant can type as is; data-tool names where to run it.
