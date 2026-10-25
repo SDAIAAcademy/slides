@@ -33,7 +33,7 @@
     full: 'ملء الشاشة / الخروج منه', esc: 'الخروج من ملء الشاشة · إغلاق اللوحات', notesKey: 'ملاحظات المدرّب',
     overview: 'نظرة عامة على الشرائح', timerKey: 'تشغيل / إيقاف مؤقّت الاستراحة', helpKey: 'هذه المساعدة',
     hint: 'F ملء الشاشة · ← → التنقّل · ? مساعدة', go: 'تشغيل / إيقاف', reset: 'إعادة', back: 'العودة الساعة ',
-    length: 'المدة', min: 'دقيقة', or: 'أو', backAt: 'العودة الساعة',
+    length: 'المدة', min: 'دقيقة', or: 'أو', backAt: 'العودة الساعة', step: 'الخطوة التالية في الشريحة',
     breakTitle: /^استراحة \d+ (دقائق|دقيقة)$/, breakText: (m) => 'استراحة ' + m + (m >= 3 && m <= 10 ? ' دقائق' : ' دقيقة'),
   } : {
     notes: 'Speaker notes · slide ', noNotes: 'No notes for this slide.',
@@ -41,7 +41,7 @@
     full: 'Enter / leave fullscreen', esc: 'Leave fullscreen · close panels', notesKey: 'Speaker notes',
     overview: 'Slide overview', timerKey: 'Start / pause the break timer', helpKey: 'This help',
     hint: 'F fullscreen · ← → navigate · ? help', go: 'Start / pause', reset: 'Reset', back: 'Back at ',
-    length: 'Length', min: 'min', or: 'or', backAt: 'back at',
+    length: 'Length', min: 'min', or: 'or', backAt: 'back at', step: 'next step on the slide',
     breakTitle: /^\d+-minute break$/, breakText: (m) => m + '-minute break',
   }, window.DECK_STRINGS || {});
   let idx = 0;
@@ -89,9 +89,16 @@
   notesPanel.className = 'notes-panel';
   document.body.appendChild(notesPanel);
 
-  function show(i) {
+  /* Fragments: elements with class "frag" appear one step at a time (next reveals the next one, back hides the last).
+     Elements that share a data-frag value appear together. Overview, print and ?check show every fragment. */
+  const frags = (s) => Array.from(s.querySelectorAll('.frag'));
+  const groups = (s) => { const g = []; frags(s).forEach((f) => { const k = f.dataset.frag; const last = g[g.length - 1]; if (k !== undefined && last && last[0].dataset.frag === k) last.push(f); else g.push([f]); }); return g; };
+  function show(i, revealAll) {
+    const forward = i > idx;
     idx = Math.max(0, Math.min(slides.length - 1, i));
     slides.forEach((s, j) => s.classList.toggle('active', j === idx));
+    frags(slides[idx]).forEach((f) => f.classList.toggle('on', !!revealAll));
+    if (forward && !revealAll) slides[idx].classList.remove('entered'), void slides[idx].offsetWidth, slides[idx].classList.add('entered');
     progress.style.width = (slides.length > 1 ? (idx / (slides.length - 1)) * 100 : 100) + '%';
     history.replaceState(null, '', '#' + (idx + 1));
     const n = slides[idx].querySelector('aside.notes');
@@ -100,8 +107,16 @@
     if (timer && !timer.dataset.started) resetTimer(timer);
     document.dispatchEvent(new CustomEvent('deckslide', { detail: { index: idx, slide: slides[idx] } }));
   }
-  const next = () => show(idx + 1);
-  const prev = () => show(idx - 1);
+  const next = () => {
+    const g = groups(slides[idx]).find((grp) => !grp[0].classList.contains('on'));
+    if (g && !document.body.classList.contains('overview')) g.forEach((f) => f.classList.add('on'));
+    else show(idx + 1);
+  };
+  const prev = () => {
+    const g = groups(slides[idx]).filter((grp) => grp[0].classList.contains('on')).pop();
+    if (g && !document.body.classList.contains('overview')) g.forEach((f) => f.classList.remove('on'));
+    else show(idx - 1, true);
+  };
 
   function toggleFullscreen() {
     if (document.fullscreenElement) document.exitFullscreen();
@@ -122,7 +137,7 @@
   const help = document.createElement('div');
   help.className = 'help';
   help.innerHTML = '<div class="box"><h5>' + T.keys + '</h5><table>' +
-    '<tr><td><kbd>' + fwd + '</kbd><kbd>↓</kbd><kbd>Space</kbd></td><td>' + T.next + '</td></tr>' +
+    '<tr><td><kbd>' + fwd + '</kbd><kbd>↓</kbd><kbd>Space</kbd></td><td>' + T.next + (document.querySelector('.frag') ? ' · ' + T.step : '') + '</td></tr>' +
     '<tr><td><kbd>' + back + '</kbd><kbd>↑</kbd></td><td>' + T.prev + '</td></tr>' +
     '<tr><td><kbd>Home</kbd><kbd>End</kbd></td><td>' + T.ends + '</td></tr>' +
     '<tr><td><kbd>F</kbd></td><td>' + T.full + '</td></tr>' +
@@ -296,7 +311,7 @@
     const issues = [];
     const was = idx;
     slides.forEach((s, i) => {
-      show(i);
+      show(i, true);  // every fragment revealed: measure the final state
       const body = s.querySelector('.body');
       if (body.scrollHeight > body.clientHeight + 2) issues.push((i + 1) + ': body overflows by ' + (body.scrollHeight - body.clientHeight) + 'px');
       s.querySelectorAll(checkSelectors.join(', ')).forEach((el) => {

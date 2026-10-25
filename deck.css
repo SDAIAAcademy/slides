@@ -64,6 +64,13 @@ body {
   line-height: 1.42;
 }
 .slide.active { display: flex; }
+.slide.entered > .body { animation: deck-in .35s ease both; }
+@keyframes deck-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+
+/* fragments: .frag appears on the next key press (deck.js); elements with the same data-frag appear together */
+.frag { opacity: 0; transform: translateY(14px); transition: opacity .35s ease, transform .35s ease; }
+.frag.on, body.overview .frag { opacity: 1; transform: none; }
+.frag.dim-after.on:not(:last-of-type) { opacity: .55; }
 .slide > .body { flex: 1; display: flex; flex-direction: column; justify-content: center; min-height: 0; }
 .slide.top > .body { justify-content: flex-start; }
 
@@ -390,6 +397,8 @@ body.overview .slide.active { outline-color: var(--track-color); }
   .deck { position: static; transform: none !important; }
   .slide { display: flex !important; position: relative; page-break-after: always; break-after: page; }
   .notes-panel, .help, .hint, .progress { display: none !important; }
+  .frag { opacity: 1 !important; transform: none !important; }
+  .slide.entered > .body { animation: none; }
 }
 
 /* break length editor (break slides) */
