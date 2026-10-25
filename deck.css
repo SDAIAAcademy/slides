@@ -190,6 +190,8 @@ table.t td.num, table.t th.num { text-align: right; font-variant-numeric: tabula
 table.t.small { font-size: 20px; }
 table.t.small th, table.t.small td { padding: 9px 14px; }
 table.t td.ar { text-align: left; }
+table.t th .muted { color: rgba(255,255,255,.72); font-weight: 400; }
+.slide.dark code, .slide.title code, .slide.section code { background: rgba(255,255,255,.14); color: #fff; }
 table.t tr.hl td { background: color-mix(in srgb, var(--track-color) 18%, #fff); font-weight: 600; }
 
 /* ---------- code ---------- */

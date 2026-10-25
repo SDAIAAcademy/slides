@@ -38,10 +38,11 @@ for (const f of htmlFiles) {
     if (sections > sessions + 2) problems.push(`${rel}: ${sections} section slides but only ${sessions} data-session labels`);
     if (!/sdaiaacademy\.github\.io\/slides\/deck\.(css|js)|cdn\.jsdelivr\.net\/gh\/SDAIAAcademy\/slides/.test(t)) problems.push(`${rel}: does not load the shared slide system`);
   }
+  const base = (t.match(/<base href="([^"]+)"/) || [])[1];  // a page may resolve its relative links from elsewhere
   for (const m of t.matchAll(/(?:href|src)="([^"#?:]+)(?:[#?][^"]*)?"/g)) {
     const target = m[1];
     if (!target || target.startsWith("//") || target.startsWith("mailto") || target.startsWith("data:")) continue;
-    const p = path.resolve(path.dirname(f), decodeURIComponent(target));
+    const p = path.resolve(path.dirname(f), base || ".", decodeURIComponent(target));
     if (!fs.existsSync(p)) problems.push(`${rel}: broken link ${target}`);
   }
   const text = t.replace(/<aside class="notes">[\s\S]*?<\/aside>/g, "").replace(/<script[\s\S]*?<\/script>/g, "").replace(/<(pre|code)[\s\S]*?<\/\1>/g, "");
