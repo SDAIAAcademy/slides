@@ -30,6 +30,8 @@ Settle these before research; ask the user once (one question with options) for 
 | Shape | 3 or 4 teaching days × 4 sessions + 1 capstone day (the Academy default). Each session: 20–25 min concepts + 25-min lab |
 | Audience | job roles and what they already know; whether undergraduates attend (then labs get a student variant) |
 | Constraints | free tiers only, no local model downloads, no code, laptop CPU or Colab, tools to avoid (n8n, Power Automate), Saudi tools to prefer |
+| Submission | engineering, data-science and foundations: a public GitHub repository link (fork the capstone starter under `SDAIAAcademy` or link the course repo from the README). Fluency and executives: a Google Drive link. The scaffolder fills this from the track |
+| Environment | `uv` for local Python (`uv run`, `uv.lock`), single-file PEP 723 scripts for programs, Google Colab preferred for notebooks |
 | Repo name | lowercase slug (`agentic-ai`, `applied-nlp`); the user pushes to `SDAIAAcademy/<repo>` or lets you |
 
 ## 2 · Research
@@ -94,6 +96,7 @@ and passes `check.mjs`. Keep every fact, number and sentence.
 - Tool names are examples; re-verify names, renames and deprecations for the current month before writing them; prefer Saudi-relevant tools with real logos.
 - Vendor API facts come from official docs; the README lists every source; nothing unpublished is cited.
 - Free hosted models only unless told otherwise; no local model downloads; everything runs on a laptop CPU or Colab.
+- Python via `uv` and PEP 723 scripts, notebooks on Google Colab; capstones are submitted as public GitHub repository links (fork or link `SDAIAAcademy`), except fluency and executive courses, which submit Google Drive links.
 - Speaker notes are keyboard only (N) and carry the instructor's script; nothing is drawn on the slide for them.
 - Changes to the shared engine or theme go to `SDAIAAcademy/slides`, never to a copy inside a course.
 - A course README is about the course and its content only: title, track, pitch, day table, rhythm, case study, how it is organised, repository tree, labs, sources. It does not describe the slide system, its keys or its checks (the engine's own README does), and never contains local paths.

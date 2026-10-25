@@ -45,11 +45,11 @@ A deck needs one stylesheet and one script:
 ```
 
 - `data-course`, `data-track`, `data-day` fill the chrome (footer and breadcrumb). `data-session` on a section slide labels the slides that follow it; `data-label` overrides one slide.
-- `<html lang="ar" dir="rtl">` switches the interface strings to Arabic and mirrors the layout. In Arabic decks ← goes forward and → back, like the progress bar; ↓, PgDn and Space always go forward so presenter clickers keep working.
+- `<html lang="ar" dir="rtl">` switches the interface strings to Arabic and mirrors the layout. In Arabic decks ← goes forward and → back, like the progress bar; ↓ and Space always go forward.
 - Elements with class `frag` appear one key press at a time (build-up slides); elements sharing a `data-frag` value appear together.
 - Code blocks (`pre.code > code.language-x`) load highlight.js on demand; set `data-highlight="off"` on `.deck` to skip it.
 - Course pages link `page.css` and `academy.js`; lab pages link `lab.css` and `academy.js`. Put `data-track` on `<html>` so the header takes the track colour.
-- A course can extend the engine with its own `assets/course.css` and `assets/course.js` loaded after the shared files. `window.deck` exposes `slides`, `show`, `next`, `prev`, `index`, `openBreak`, `closeBreak`, `check` and `checkSelectors`; the document fires `deckslide` on every slide change.
+- A course can extend the engine with its own `assets/course.css` and `assets/course.js` loaded after the shared files. `window.deck` exposes `slides`, `show`, `next`, `prev`, `nextSession`, `prevSession`, `index`, `openBreak`, `closeBreak`, `check` and `checkSelectors`; the document fires `deckslide` on every slide change.
 
 **Latest or pinned.** `https://sdaiaacademy.github.io/slides/…` always serves `main`. To freeze a course on a release, link to a tag through jsDelivr, for example `https://cdn.jsdelivr.net/gh/SDAIAAcademy/slides@v1.0.0/deck.css`, and move the pin when ready.
 
@@ -67,9 +67,11 @@ Every course belongs to one of the Academy's five tracks. `data-track` takes the
 
 ## In the room
 
-`F` fullscreen · `Esc` exit · `←` `→` / `↑` `↓` navigate (a key press also reveals the next piece of a build-up slide) · `Home` `End` · `N` speaker notes · `O` overview · `B` break screen · `T` start/pause a timer · `?` help. Swipe on touch screens.
+`F` fullscreen · `←` `→` / `↑` `↓` navigate (a key press also reveals the next piece of a build-up slide) · `PgUp` `PgDn` previous / next session, and past the ends the previous / next deck · `Home` `End` · `N` speaker notes · `O` overview · `B` break screen · `T` start/pause a timer · `?` help · `Esc` leaves fullscreen, closes what is open, and otherwise returns to the course page. Swipe on touch screens.
 
-Breaks are not slides. `B` opens a break screen over the current slide with a 10-minute timer; the length field is already selected, so type another number or a "back at" time, press `Enter` to start, `T` to pause, `Esc` to end the break and return to the slide.
+Breaks are not slides. `B` opens a break screen over the current slide: the time the room is back (big) and a 10-minute countdown. Click the time to type a clock time, click the countdown (or press a digit) to type a length, `Enter` starts, `T` pauses, `Esc` ends the break and returns to the slide.
+
+A deck finds its neighbours by name (`day2.html` → `day1.html`, `day3.html`) or from `data-prev` / `data-next` on `.deck`; `data-home` overrides the course page (`../index.html`).
 
 ## Theme
 

@@ -32,6 +32,8 @@ const vars = {
   TEACHING_DAYS: String(days), CAPSTONE_DAY: String(cap), LAB_COUNT: String(days * 4),
   CASE_ORG: args.case || "{{CASE_ORG}}", CASE_ORG_AR: args["case-ar"] || args.case || "{{CASE_ORG_AR}}", PREREQ: args.prereq || "{{PREREQ}}",
   LANG: ar ? "Arabic (RTL)" : "English", TALK_MIN: ar ? "5" : "8", QA_MIN: ar ? "2" : "4", PRESENTERS: "{{PRESENTERS}}",
+  SUBMIT: ["fluency", "executives"].includes(args.track) ? "a Google Drive link to a folder with the deliverables, shared with the instructor" : `a public GitHub repository link (fork the capstone starter under SDAIAAcademy, or link https://github.com/SDAIAAcademy/${args.repo} from your README)`,
+  SUBMIT_AR: ["fluency", "executives"].includes(args.track) ? "رابط مجلد على Google Drive يحوي المخرجات، مشارَك مع المدرّب" : `رابط مستودع GitHub عام (انسخ مستودع المشروع الختامي من SDAIAAcademy أو اربط https://github.com/SDAIAAcademy/${args.repo} في README)`,
   LAB_BASE: labs === "notebooks" ? `https://colab.research.google.com/github/SDAIAAcademy/${args.repo}/blob/main/labs/` : "../labs/",
   AUDIENCE_PILL: "{{AUDIENCE_PILL}}", AUDIENCE_PILL_AR: "{{AUDIENCE_PILL_AR}}", PITCH: "{{PITCH}}", PITCH_AR: "{{PITCH_AR}}",
 };

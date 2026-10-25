@@ -88,8 +88,6 @@ table { width: 100%; border-collapse: collapse; font-size: 15px; }
 td, th { padding: 10px 22px; border-top: 1px solid var(--paper-2); text-align: start; vertical-align: top; }
 th { font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
 [dir="rtl"] th { font-size: 13px; letter-spacing: 0; text-transform: none; }
-td.brk { color: var(--muted); font-style: italic; }
-[dir="rtl"] td.brk { font-style: normal; }
 .scroll { overflow-x: auto; }
 
 .two { display: grid; gap: 24px; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }

@@ -39,7 +39,7 @@ Format: individual or pairs · {{TALK_MIN}} min talk + demo · {{QA_MIN}} min Q&
 
 ## Capstone
 
-Tracks (3 options), minimum requirements, starter kit contents, rubric (5–6 weighted criteria summing to 100).
+Tracks (3 options), minimum requirements, starter kit contents, rubric (5–6 weighted criteria summing to 100), submission format ({{SUBMIT}}).
 
 ## Conventions
 

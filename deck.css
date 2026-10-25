@@ -147,10 +147,12 @@ ul.bullets ul { margin: 6px 0 0; padding-left: 26px; font-size: .86em; color: va
 .mb0 { margin-bottom: 0; }
 
 /* ---------- cards ---------- */
+/* Boxes keep a uniform 1px border and draw their accent strip as an inset shadow: mixed border widths on a rounded
+   box leave small corner artifacts when the stage is scaled. */
 .card {
   background: #fff; border: 1px solid var(--line); border-radius: 18px;
-  padding: 26px 30px; font-size: 24px; line-height: 1.4;
-  border-top: 6px solid var(--c, var(--navy));
+  padding: 31px 30px 26px; font-size: 24px; line-height: 1.4;
+  box-shadow: inset 0 6px 0 var(--c, var(--navy));
 }
 .card h3, .card h4 { color: var(--c, var(--navy)); }
 .card p:last-child, .card ul:last-child { margin-bottom: 0; }
@@ -163,7 +165,7 @@ ul.bullets ul { margin: 6px 0 0; padding-left: 26px; font-size: .86em; color: va
 .c-amber { --c: #d98f17; }
 .c-purple { --c: var(--purple); }
 .c-navy { --c: var(--navy); }
-.card.flat { border-top-width: 1px; border-left: 8px solid var(--c, var(--navy)); }
+.card.flat { padding: 26px 30px 26px 37px; box-shadow: inset 8px 0 0 var(--c, var(--navy)); }
 .card.tint { background: color-mix(in srgb, var(--c, var(--navy)) 7%, #fff); }
 
 .pill {
@@ -173,9 +175,9 @@ ul.bullets ul { margin: 6px 0 0; padding-left: 26px; font-size: .86em; color: va
 }
 
 .callout {
-  border-radius: 16px; padding: 22px 28px; font-size: 25px;
+  border-radius: 16px; padding: 22px 28px 22px 35px; font-size: 25px;
   background: color-mix(in srgb, var(--c, var(--teal)) 10%, #fff);
-  border-left: 8px solid var(--c, var(--teal));
+  box-shadow: inset 8px 0 0 var(--c, var(--teal));
 }
 .callout b:first-child { color: var(--c, var(--teal)); }
 .callout.warn { --c: var(--coral); }
@@ -291,7 +293,14 @@ pre.code .hl-line { background: rgba(255,181,72,.16); display: inline-block; wid
 .timer.done { color: var(--coral); }
 .slide.live { z-index: 5; }                       /* the break screen (B), laid over the current slide */
 body.overview .slide.live { display: none; }
-.slide.live .lead.small { margin-top: 10px; }
+.slide.live .kicker { font-size: 26px; letter-spacing: .08em; }
+.slide.live h1.back { font-size: 40px; font-weight: 600; color: rgba(255,255,255,.75); margin-top: 6px; cursor: pointer; }
+.slide.live h1.back b { display: block; font: 600 200px/1 var(--mono); color: var(--track-color); letter-spacing: -.02em; font-variant-numeric: tabular-nums; margin-top: 10px; direction: ltr; }
+.slide.live .timer { font-size: 78px; margin: 30px 0 6px; cursor: pointer; }
+.slide.live .timer:not(.done) { color: rgba(255,255,255,.85); }
+.slide.live .edit { display: none; margin: 10px 0 0; }
+.slide.live[data-edit="back"] .edit-back, .slide.live[data-edit="mins"] .edit-mins { display: flex; }
+.slide.live .lead.small { margin-top: 24px; font-size: 22px; }
 .timer-btns { display: flex; gap: 14px; justify-content: center; margin-bottom: 24px; }
 .timer-btns button {
   font: 600 20px var(--font); padding: 10px 26px; border-radius: 999px; border: 1px solid rgba(255,255,255,.4);
@@ -422,21 +431,23 @@ body.overview .slide.active { outline-color: var(--track-color); }
 
 /* denser card stacks for crowded slides */
 .stack.dense > * + * { margin-top: 12px; }
-.stack.dense .card { font-size: 21px; padding: 16px 22px; }
+.stack.dense .card { font-size: 21px; padding: 21px 22px 16px; }
 
 /* ---------- prompts and conversations (AI Productivity) ---------- */
 /* .prompt: a prompt the participant can type as is; data-tool names where to run it.
    .seg marks one part of a prompt (role, context, task, ...) with a label under it. */
 .prompt {
   position: relative; background: #fff; border: 1px solid var(--line); border-radius: 16px;
-  padding: 22px 28px; font-size: 24px; line-height: 1.6; white-space: pre-line;
-  border-inline-start: 8px solid var(--c, var(--amber));
+  padding: 22px 28px; padding-inline-start: 35px; font-size: 24px; line-height: 1.6; white-space: pre-line;
+  box-shadow: inset 8px 0 0 var(--c, var(--amber));
 }
+[dir="rtl"] .trace .ev { box-shadow: inset -6px 0 0 var(--c, var(--navy)); }
+[dir="rtl"] .prompt { box-shadow: inset -8px 0 0 var(--c, var(--amber)); }
 .prompt[data-tool]::before {
   content: attr(data-tool); display: block; font-size: 15px; font-weight: 600; letter-spacing: .04em;
   color: var(--muted); margin: -6px 0 8px; white-space: normal;
 }
-.prompt.s { font-size: 21px; padding: 16px 22px; }
+.prompt.s { font-size: 21px; padding: 16px 22px; padding-inline-start: 29px; }
 .prompt.dark { background: var(--code-bg); color: #e6edf3; border-color: #26364a; }
 .prompt.dark[data-tool]::before { color: #8b98a9; }
 .prompt .seg {
@@ -496,8 +507,8 @@ body.overview .slide.active { outline-color: var(--track-color); }
 [dir="rtl"] ol.bullets > li::before { left: auto; right: 0; }
 [dir="rtl"] ul.bullets ul { padding-left: 0; padding-right: 26px; }
 [dir="rtl"] .card ul { padding-left: 0; padding-right: 22px; }
-[dir="rtl"] .card.flat { border-left-width: 1px; border-right: 8px solid var(--c, var(--navy)); }
-[dir="rtl"] .callout { border-left: none; border-right: 8px solid var(--c, var(--teal)); }
+[dir="rtl"] .card.flat { padding: 26px 37px 26px 30px; box-shadow: inset -8px 0 0 var(--c, var(--navy)); }
+[dir="rtl"] .callout { padding: 22px 35px 22px 28px; box-shadow: inset -8px 0 0 var(--c, var(--teal)); }
 
 [dir="rtl"] table.t th { text-align: right; }
 [dir="rtl"] table.t td.num, [dir="rtl"] table.t th.num { text-align: left; }
@@ -531,8 +542,8 @@ body.overview .slide.active { outline-color: var(--track-color); }
 .trace { display: flex; flex-direction: column; gap: 8px; font-size: 20px; line-height: 1.42; }
 .trace .ev {
   display: grid; grid-template-columns: 128px 1fr; gap: 14px; align-items: baseline;
-  background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 9px 16px;
-  border-inline-start: 6px solid var(--c, var(--navy));
+  background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 9px 16px; padding-inline-start: 21px;
+  box-shadow: inset 6px 0 0 var(--c, var(--navy));
 }
 .trace .ev > b { font-size: 14px; letter-spacing: .08em; text-transform: uppercase; color: var(--c, var(--navy)); }
 .trace .ev code { font-size: .84em; word-break: break-word; }

@@ -28,10 +28,10 @@ Source: https://github.com/SDAIAAcademy/slides (`deck.css`, `deck.js`, `page.css
 - The stage is 1600×900 and scales to the window. The engine wraps each slide's content in `.body` (vertically centred; `.slide.top` aligns to the top) and adds the chrome: logo + breadcrumb (`data-day · label`) on top, `track · course` and `n / N` at the bottom, a progress bar.
 - `data-track` keys: `fluency`, `foundations`, `ai-engineering`, `data-science`, `executives`. Free text also works (shown as is).
 - `data-session="S1 · Title"` on a section slide sets the breadcrumb label for the slides that follow; `data-label` overrides one slide. `data-highlight="off"` on `.deck` disables highlight.js.
-- Keys: → ↓ PgDn Space next · ← ↑ PgUp back (in RTL ← is next) · Home End · F fullscreen · Esc · N speaker notes (a panel at the bottom, keyboard only, nothing on screen) · O overview · B break screen · T start/pause a timer · ? help. Swipe on touch.
-- **Breaks are not slides.** `B` lays a break screen over the current slide: navy, the course chrome, a 10-minute timer, a length field (already selected) and a "back at" field; Enter starts, T pauses, Esc or B ends it and the deck is where it was. Decks contain no `.slide.break` and agendas no break rows.
+- Keys: → ↓ Space next · ← ↑ back (in RTL ← is next) · PgDn PgUp next / previous session boundary (first slide, section slides, last slide), and past the ends the next / previous deck (`data-next` / `data-prev` on `.deck`, else `dayN.html` ± 1, else the course page) · Home End · F fullscreen · Esc leaves fullscreen, closes an open panel, otherwise goes to the course page (`data-home`, default `../index.html`) · N speaker notes (a panel at the bottom, keyboard only, nothing on screen) · O overview · B break screen · T start/pause a timer · ? help. Swipe on touch. Presenter remotes that send PgUp/PgDn therefore jump sessions; the arrow keys and Space advance slides.
+- **Breaks are not slides.** `B` lays a break screen over the current slide: navy, the course chrome, the time the room is back (big) and a 10-minute countdown. Clicking the time opens a clock field, clicking the countdown (or a digit key) opens a minutes field; Enter starts, T pauses, Esc or B ends it and the deck is where it was. Decks contain no `.slide.break` and agendas no break rows.
 - **Fragments (build-up slides).** Give an element class `frag` and it stays hidden until the next key press reveals it (fade and rise); back hides the last one again. Elements sharing a `data-frag="2"` value appear together. Use fragments for "one piece per click" explanations instead of repeating a slide with one more element each time. Overview, print and the layout check show every fragment.
-- The layout check is tooling, not a feature for instructors: `scripts/check.mjs` opens each deck with `?check` in headless Chrome, which makes `deck.js` measure every slide (fragments revealed, after the fonts load) and write the report to `<pre id="check-report">` and the console. `window.deck` = `{ slides, show(i), next(), prev(), openBreak(), closeBreak(), index, check(), checkSelectors, config, track, strings, rtl }`; `document` fires `deckslide` with `{index, slide}`.
+- The layout check is tooling, not a feature for instructors: `scripts/check.mjs` opens each deck with `?check` in headless Chrome, which makes `deck.js` measure every slide (fragments revealed, after the fonts load) and write the report to `<pre id="check-report">` and the console. `window.deck` = `{ slides, show(i), next(), prev(), nextSession(), prevSession(), openBreak(), closeBreak(), index, check(), checkSelectors, config, track, strings, rtl }`; `document` fires `deckslide` with `{index, slide}`.
 
 ## Slide types (classes on `section.slide`)
 
@@ -54,7 +54,7 @@ Source: https://github.com/SDAIAAcademy/slides (`deck.css`, `deck.js`, `page.css
 
 ## Boxes
 
-- `.card` with a colour class `c-teal | c-coral | c-cyan | c-purple | c-navy | c-amber | c-green`; `h3`/`h4` + `p`/`ul`; variants `.card.flat` (side border), `.card.tint` (tinted background). Cards in one `.cols` row share the row's height. `.pill.c-*` small label.
+- `.card` with a colour class `c-teal | c-coral | c-cyan | c-purple | c-navy | c-amber | c-green`; `h3`/`h4` + `p`/`ul`; variants `.card.flat` (side accent), `.card.tint` (tinted background). Cards in one `.cols` row share the row's height. Boxes keep a uniform 1px border and draw their accent strip as an inset shadow; do not add thick one-sided borders to rounded boxes (they leave corner artifacts when the stage is scaled). `.pill.c-*` small label.
 - `.callout.tip | .warn | .note` with `<b>Label.</b>` first. Use one callout at the bottom of a concept slide for the takeaway.
 - `table.t` (`th.num`/`td.num` right-aligned numbers, `tr.hl` highlight, `table.t.small`).
 - `pre.code[data-file="x.py"] > code.language-python` (highlight.js loads on demand; `.s` smaller, `.l` larger; `.hl-line` span to highlight a line). Keep lines short: the check flags lines wider than the box.
@@ -84,7 +84,7 @@ Source: https://github.com/SDAIAAcademy/slides (`deck.css`, `deck.js`, `page.css
 <link rel="stylesheet" href="https://sdaiaacademy.github.io/slides/page.css">
 <header><div class="wrap"><div class="logo" id="logo"></div><div class="kicker">…</div><h1>…</h1>
   <span class="sub" lang="ar" dir="rtl">…</span><p>…</p><div class="meta"><span class="track">…</span><span>…</span></div></div></header>
-<main class="wrap"> h2, p, .grid > .card.c-* (h3 + p), .day > .day-head.c-* (div(.t + h3) + a.btn) + .scroll > table (tr > th; td > b; td.brk),
+<main class="wrap"> h2, p, .grid > .card.c-* (h3 + p), .day > .day-head.c-* (div(.t + h3) + a.btn) + .scroll > table (tr > th; td > b),
   .two > div, .bar > span(+ i[style="--w:…"]) + b, .files > a (b + span), .note(.tip|.warn|.info), ul/ol </main>
 <footer><div class="wrap">…</div></footer>
 <script src="https://sdaiaacademy.github.io/slides/academy.js"></script>

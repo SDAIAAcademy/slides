@@ -33,24 +33,27 @@
   const T = Object.assign(ar ? {
     notes: 'ملاحظات المدرّب · الشريحة ', noNotes: 'لا توجد ملاحظات لهذه الشريحة.',
     keys: 'لوحة المفاتيح', next: 'الشريحة التالية', prev: 'الشريحة السابقة', ends: 'الأولى / الأخيرة',
-    full: 'ملء الشاشة / الخروج منه', esc: 'الخروج من ملء الشاشة · إغلاق اللوحات', notesKey: 'ملاحظات المدرّب',
+    full: 'ملء الشاشة / الخروج منه', esc: 'الخروج من ملء الشاشة · إغلاق اللوحات · العودة إلى صفحة الدورة', notesKey: 'ملاحظات المدرّب',
     overview: 'نظرة عامة على الشرائح', timerKey: 'تشغيل / إيقاف المؤقّت', helpKey: 'هذه المساعدة',
-    hint: 'F ملء الشاشة · ← → التنقّل · ? مساعدة', go: 'تشغيل / إيقاف', reset: 'إعادة', back: 'العودة الساعة ',
-    length: 'المدة', min: 'دقيقة', or: 'أو', backAt: 'العودة الساعة', step: 'الخطوة التالية في الشريحة',
-    breakKey: 'شاشة الاستراحة (اكتب المدة أو وقت العودة ثم Enter)', breakLabel: 'استراحة',
-    breakHint: 'Enter للبدء · T إيقاف مؤقت · Esc لإنهاء الاستراحة',
+    sessions: 'الجلسة السابقة / التالية، ومن الطرفين العرض السابق / التالي',
+    hint: 'F ملء الشاشة · ← → التنقّل · ? مساعدة', go: 'تشغيل / إيقاف', reset: 'إعادة', back: 'العودة الساعة',
+    length: 'المدة', min: 'دقيقة', backAt: 'العودة الساعة', step: 'الخطوة التالية في الشريحة',
+    breakKey: 'شاشة الاستراحة (10 دقائق؛ انقر الساعة أو العدّاد لتغييرها، ثم Enter)', breakLabel: 'استراحة',
+    breakHint: 'Enter للبدء · T إيقاف مؤقت · Esc للإنهاء · انقر ساعة العودة أو العدّاد لتغييرهما',
     breakText: (m) => 'استراحة ' + m + (m >= 3 && m <= 10 ? ' دقائق' : ' دقيقة'),
   } : {
     notes: 'Speaker notes · slide ', noNotes: 'No notes for this slide.',
     keys: 'Keyboard', next: 'Next slide', prev: 'Previous slide', ends: 'First / last slide',
-    full: 'Enter / leave fullscreen', esc: 'Leave fullscreen · close panels', notesKey: 'Speaker notes',
+    full: 'Enter / leave fullscreen', esc: 'Leave fullscreen · close panels · back to the course page', notesKey: 'Speaker notes',
     overview: 'Slide overview', timerKey: 'Start / pause a timer', helpKey: 'This help',
-    hint: 'F fullscreen · ← → navigate · ? help', go: 'Start / pause', reset: 'Reset', back: 'Back at ',
-    length: 'Length', min: 'min', or: 'or', backAt: 'back at', step: 'next step on the slide',
-    breakKey: 'Break screen (type a length or a return time, then Enter)', breakLabel: 'Break',
-    breakHint: 'Enter to start · T to pause · Esc to end the break',
+    sessions: 'Previous / next session; past the ends, the previous / next deck',
+    hint: 'F fullscreen · ← → navigate · ? help', go: 'Start / pause', reset: 'Reset', back: 'Back at',
+    length: 'Length', min: 'min', backAt: 'back at', step: 'next step on the slide',
+    breakKey: 'Break screen (10 minutes; click the time or the countdown to change it, then Enter)', breakLabel: 'Break',
+    breakHint: 'Enter to start · T to pause · Esc to end · click the time or the countdown to change them',
     breakText: (m) => m + '-minute break',
   }, window.DECK_STRINGS || {});
+  const home = cfg.home || '../index.html';  // Esc (outside fullscreen, with nothing open) and the ends of the course go here
   let idx = 0;
 
   /* ---------- chrome ---------- */
@@ -101,8 +104,9 @@
   const frags = (s) => Array.from(s.querySelectorAll('.frag'));
   const groups = (s) => { const g = []; frags(s).forEach((f) => { const k = f.dataset.frag; const last = g[g.length - 1]; if (k !== undefined && last && last[0].dataset.frag === k) last.push(f); else g.push([f]); }); return g; };
   function show(i, revealAll) {
-    const forward = i > idx;
-    idx = Math.max(0, Math.min(slides.length - 1, i));
+    const target = Math.max(0, Math.min(slides.length - 1, i));
+    const forward = target > idx;  // the ends do not replay the entrance
+    idx = target;
     slides.forEach((s, j) => s.classList.toggle('active', j === idx));
     frags(slides[idx]).forEach((f) => f.classList.toggle('on', !!revealAll));
     if (forward && !revealAll) slides[idx].classList.remove('entered'), void slides[idx].offsetWidth, slides[idx].classList.add('entered');
@@ -125,6 +129,32 @@
     else show(idx - 1, true);
   };
 
+  /* Sessions and decks: PgDn / PgUp jump between the session boundaries (first slide, every section slide, last
+     slide); past the ends they open the next or previous deck (data-next / data-prev on .deck, else dayN.html ± 1),
+     and where there is none, the course page. */
+  const bounds = () => {
+    const b = [0];
+    slides.forEach((s, i) => { if (i && s.classList.contains('section')) b.push(i); });
+    if (b[b.length - 1] !== slides.length - 1) b.push(slides.length - 1);
+    return b;
+  };
+  const go = (url) => { location.href = url; };
+  function neighbour(d) {
+    const explicit = d > 0 ? cfg.next : cfg.prev;
+    if (explicit) return explicit;
+    const m = location.pathname.match(/([^/]*?)(\d+)\.html$/);
+    if (!m) return null;
+    const n = Number(m[2]) + d;
+    return n >= 1 ? m[1] + n + '.html' : null;
+  }
+  function leave(d) {
+    const url = neighbour(d);
+    if (!url) return go(home);
+    fetch(url, { method: 'HEAD' }).then((r) => go(r.ok ? url + '#1' : home), () => go(url + '#1'));
+  }
+  const nextSession = () => { const b = bounds().find((i) => i > idx); if (b !== undefined) show(b); else leave(1); };
+  const prevSession = () => { const b = bounds().filter((i) => i < idx).pop(); if (b !== undefined) show(b, true); else leave(-1); };
+
   function toggleFullscreen() {
     if (document.fullscreenElement) document.exitFullscreen();
     else html.requestFullscreen().catch(() => {});
@@ -146,6 +176,7 @@
   help.innerHTML = '<div class="box"><h5>' + T.keys + '</h5><table>' +
     '<tr><td><kbd>' + fwd + '</kbd><kbd>↓</kbd><kbd>Space</kbd></td><td>' + T.next + (document.querySelector('.frag') ? ' · ' + T.step : '') + '</td></tr>' +
     '<tr><td><kbd>' + back + '</kbd><kbd>↑</kbd></td><td>' + T.prev + '</td></tr>' +
+    '<tr><td><kbd>PgUp</kbd><kbd>PgDn</kbd></td><td>' + T.sessions + '</td></tr>' +
     '<tr><td><kbd>Home</kbd><kbd>End</kbd></td><td>' + T.ends + '</td></tr>' +
     '<tr><td><kbd>F</kbd></td><td>' + T.full + '</td></tr>' +
     '<tr><td><kbd>Esc</kbd></td><td>' + T.esc + '</td></tr>' +
@@ -171,24 +202,31 @@
       if (e.key === 'Escape' || e.key === 'b' || e.key === 'B') { e.preventDefault(); closeBreak(); }
       else if (e.key === 't' || e.key === 'T') toggleTimer(brkTimer);
       else if (e.key === 'Enter') { e.preventDefault(); run(brkTimer); }
+      else if (/^[0-9]$/.test(e.key)) { brkEdit('mins'); brkMins.value = ''; }  // the digit lands in the field
       return;
     }
     switch (e.key) {
       case 'ArrowRight': case 'ArrowLeft':
         e.preventDefault(); ((e.key === 'ArrowLeft') === rtl ? next : prev)(); break;
-      case 'ArrowDown': case 'PageDown': case ' ': case 'Enter':
+      case 'ArrowDown': case ' ': case 'Enter':
         e.preventDefault(); next(); break;
-      case 'ArrowUp': case 'PageUp': case 'Backspace':
+      case 'ArrowUp': case 'Backspace':
         e.preventDefault(); prev(); break;
+      case 'PageDown': e.preventDefault(); nextSession(); break;
+      case 'PageUp': e.preventDefault(); prevSession(); break;
       case 'Home': e.preventDefault(); show(0); break;
       case 'End': e.preventDefault(); show(slides.length - 1); break;
       case 'f': case 'F': e.preventDefault(); toggleFullscreen(); break;
       case 'Escape':
-        if (document.fullscreenElement) document.exitFullscreen();
-        help.classList.remove('on'); notesPanel.classList.remove('on'); toggleOverview(false); break;
+        if (document.fullscreenElement) { document.exitFullscreen(); break; }
+        if (Date.now() - fsExit < 1500) break;  // the browser left fullscreen on this same key press
+        if (help.classList.contains('on') || notesPanel.classList.contains('on') || document.body.classList.contains('overview')) {
+          help.classList.remove('on'); notesPanel.classList.remove('on'); toggleOverview(false); break;
+        }
+        go(home); break;
       case 'n': case 'N': notesPanel.classList.toggle('on'); break;
       case 'o': case 'O': toggleOverview(); break;
-      case 'b': case 'B': if (!document.body.classList.contains('overview')) openBreak(); break;
+      case 'b': case 'B': e.preventDefault(); if (!document.body.classList.contains('overview')) openBreak(); break;
       case '?': help.classList.toggle('on'); break;
       case 't': case 'T': {
         const timer = slides[idx].querySelector('.timer');
@@ -197,6 +235,9 @@
       }
     }
   });
+
+  let fsExit = 0;
+  document.addEventListener('fullscreenchange', () => { if (!document.fullscreenElement) fsExit = Date.now(); });
 
   /* touch swipe */
   let tx = null;
@@ -219,7 +260,7 @@
     el.textContent = pad(Math.floor(secs / 60)) + ':' + pad(secs % 60);
     el.classList.toggle('done', secs === 0);
     const st = timers.get(el);
-    if (st && st.back) st.back.textContent = st.end ? T.back + clock(new Date(st.end)) : '';
+    if (st && st.back) st.back.textContent = clock(new Date(st.end || Date.now() + secs * 1000));  // when the room is back
   }
   function stop(st) { if (st.h) clearInterval(st.h); st.h = null; }
   function tick(el) {
@@ -257,35 +298,50 @@
   }
 
   /* ---------- the break screen: B ---------- */
-  /* Not a slide: a break section laid over the current slide, outside the navigation, with a 10-minute timer.
-     The length field is focused and selected when it opens, so typing a number and Enter changes the length and
-     starts the countdown; "back at" counts down to a clock time; Esc or B ends the break. */
+  /* Not a slide: a break section laid over the current slide, outside the navigation. It shows the time the room is
+     back (big) and the countdown (smaller), 10 minutes by default. Clicking the time opens a clock field, clicking
+     the countdown opens a minutes field (a digit key opens it too); Enter starts, T pauses, Esc ends the break. */
   const brk = document.createElement('section');
   brk.className = 'slide break live';
   brk.innerHTML = '<div class="chrome-top"><div class="logo">' + LOGO.replace(/acad-/g, 'acadb-') + '</div>' +
     '<div class="crumb">' + (cfg.day ? '<b>' + cfg.day + '</b><span>·</span>' : '') + '<span>' + T.breakLabel + '</span></div></div>' +
-    '<div class="body"><div class="kicker">' + T.breakLabel + '</div><h1></h1><div class="timer" data-minutes="10"></div>' +
-    '<div class="timer-edit"><label>' + T.length + ' <input class="mins" type="text" inputmode="numeric" maxlength="3" lang="en"> ' + T.min + '</label>' +
-    '<span class="or">' + T.or + '</span><label>' + T.backAt + ' <input type="time"></label><span class="back"></span></div>' +
+    '<div class="body"><div class="kicker"></div>' +
+    '<h1 class="back" title="' + T.backAt + '"><span>' + T.back + '</span><b></b></h1>' +
+    '<div class="timer-edit edit edit-back"><label>' + T.backAt + ' <input type="time"></label></div>' +
+    '<div class="timer" data-minutes="10"></div>' +
+    '<div class="timer-edit edit edit-mins"><label>' + T.length + ' <input class="mins" type="text" inputmode="numeric" maxlength="3" lang="en"> ' + T.min + '</label></div>' +
     '<p class="lead small">' + T.breakHint + '</p></div>' +
     '<div class="chrome-bottom"><div class="track"><i></i>' + footer + '</div><div class="no"></div></div>';
   deck.appendChild(brk);
   const brkTimer = brk.querySelector('.timer');
   const brkMins = brk.querySelector('input.mins');
+  const brkTime = brk.querySelector('input[type=time]');
   const breakOn = () => brk.classList.contains('active');
+  let brkRefresh = null;
+  function brkEdit(mode) {  // '' | 'mins' | 'back': which field is open
+    brk.dataset.edit = mode || '';
+    if (mode === 'mins') { brkMins.value = timers.get(brkTimer).minutes; brkMins.focus(); brkMins.select(); }
+    else if (mode === 'back') brkTime.focus();
+    else if (document.activeElement && brk.contains(document.activeElement)) document.activeElement.blur();
+  }
   function openBreak() {
     help.classList.remove('on'); notesPanel.classList.remove('on');
-    setMinutes(brkTimer, 10);  // every break starts from the default; the instructor retypes it
+    setMinutes(brkTimer, 10);  // every break starts from the default
     brk.classList.add('active');
-    brkMins.focus(); brkMins.select();
+    brkEdit('');
+    clearInterval(brkRefresh);
+    brkRefresh = setInterval(() => { const st = timers.get(brkTimer); if (!st.h) render(brkTimer, st.left); }, 15000);  // the projected time moves with the clock
   }
   function closeBreak() {
     stop(timers.get(brkTimer));
+    clearInterval(brkRefresh);
+    brkEdit('');
     brk.classList.remove('active');
-    if (document.activeElement && brk.contains(document.activeElement)) document.activeElement.blur();
   }
+  brk.querySelector('h1.back').addEventListener('click', () => brkEdit('back'));
+  brkTimer.addEventListener('click', () => brkEdit('mins'));
   brkMins.addEventListener('change', () => setMinutes(brkTimer, parseInt(digits(brkMins.value), 10) || timers.get(brkTimer).minutes));
-  brk.querySelector('input[type=time]').addEventListener('change', (e) => {
+  brkTime.addEventListener('change', (e) => {
     const [h, m] = e.target.value.split(':').map(Number);
     if (Number.isNaN(h)) return;
     const end = new Date();
@@ -296,12 +352,13 @@
     timers.get(brkTimer).left = secs;  // count down to the exact clock time
     run(brkTimer);
     e.target.value = '';
-    e.target.blur();
+    brkEdit('');
   });
   brk.addEventListener('keydown', (e) => {  // keys typed inside the fields
-    if (e.key === 'Enter') { e.preventDefault(); if (e.target === brkMins) brkMins.dispatchEvent(new Event('change')); run(brkTimer); e.target.blur(); e.stopPropagation(); }
-    else if (e.key === 'Escape' || ((e.key === 'b' || e.key === 'B') && e.target === brkMins)) { e.preventDefault(); closeBreak(); e.stopPropagation(); }
-    else if ((e.key === 't' || e.key === 'T') && e.target === brkMins) { e.preventDefault(); toggleTimer(brkTimer); e.stopPropagation(); }
+    if (e.key === 'Enter') { e.preventDefault(); e.stopPropagation(); if (e.target === brkMins) { brkMins.dispatchEvent(new Event('change')); run(brkTimer); } brkEdit(''); }
+    else if (e.key === 'Escape') { e.preventDefault(); e.stopPropagation(); brkEdit(''); }  // closes the field; Esc again ends the break
+    else if ((e.key === 'b' || e.key === 'B') && e.target === brkMins) { e.preventDefault(); e.stopPropagation(); closeBreak(); }
+    else if ((e.key === 't' || e.key === 'T') && e.target === brkMins) { e.preventDefault(); e.stopPropagation(); toggleTimer(brkTimer); }
   });
 
   document.querySelectorAll('.timer').forEach((el) => {
@@ -309,8 +366,8 @@
     timers.set(el, st);
     if (el === brkTimer) {
       st.input = brkMins;
-      st.back = brk.querySelector('.back');
-      st.title = brk.querySelector('h1');
+      st.back = brk.querySelector('h1.back b');
+      st.title = brk.querySelector('.kicker');
     } else {
       const btns = document.createElement('div');
       btns.className = 'timer-btns';
@@ -378,5 +435,5 @@
 
   const start = parseInt(location.hash.slice(1), 10);
   show(Number.isFinite(start) ? start - 1 : 0);
-  window.deck = { slides, show, next, prev, openBreak, closeBreak, check, checkSelectors, get index() { return idx; }, config: cfg, track: trackName, tracks: TRACKS, strings: T, rtl, logo: LOGO };
+  window.deck = { slides, show, next, prev, nextSession, prevSession, openBreak, closeBreak, check, checkSelectors, get index() { return idx; }, config: cfg, track: trackName, tracks: TRACKS, strings: T, rtl, logo: LOGO };
 })();
