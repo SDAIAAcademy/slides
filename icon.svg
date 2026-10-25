@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 173.7 120">
+  <defs>
+    <linearGradient id="a">
+      <stop stop-color="#273470"/>
+      <stop offset=".5" stop-color="#3c9"/>
+      <stop offset="1" stop-color="#99d633"/>
+    </linearGradient>
+    <linearGradient id="b">
+      <stop stop-color="#6cf"/>
+      <stop offset=".5" stop-color="#6cf"/>
+      <stop offset=".75" stop-color="#6258a6"/>
+      <stop offset="1" stop-color="#273470"/>
+    </linearGradient>
+    <linearGradient id="c">
+      <stop stop-color="#273470"/>
+      <stop offset=".5" stop-color="#f63"/>
+      <stop offset="1" stop-color="#fdbd4d"/>
+    </linearGradient>
+  </defs>
+  <path fill="url(#a)" d="m68.7 10.1 17.3 10V0zm36.3 0-17.4 10V0zm-6.3 100 17.2-10.2V120zm36.2 0-17.3-10.2V120z"/>
+  <path fill="url(#b)" d="m30 33 26.8 15.5v-31zm56 0L59.5 48.5v-31zM0 50.4l26.9 15.4V34.9zm56 0L29.5 65.8V34.9zm-56 35 26.8-15.6v31zm56 0L29.5 69.7v31zm4 0L86.9 70v31zm56.2 0L89.3 70v31zM30 102.6 56.8 87v31zm56 0L59.5 87v31z"/>
+  <path fill="url(#c)" d="m87.6 33 26.8 15.5v-31zm56.1 0L117 48.5v-31zm-26 17.4 26.7 15.4V34.9zm56 0L147 65.8V34.9zm-56 35 26.7-15.6v31zm56 0L147 69.7v31z"/>
+</svg>

@@ -8,6 +8,10 @@ goes stale. Add every new course to this file.
 
 ## Tracks
 
+This table is the reference for what each track means and who it is for; the slide system itself knows only the key, the
+localized name and the accent colour (teal, green, amber, cyan, coral). Foundations is the common core that both AI
+Engineering and Data Science build on; data engineering belongs to AI Engineering.
+
 | Key | Track | Audience and purpose | Language so far |
 |---|---|---|---|
 | `fluency` | Data & AI Fluency | Employees and undergraduates who use AI applications; no code | Arabic |

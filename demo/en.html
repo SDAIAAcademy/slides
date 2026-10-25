@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Demo deck · SDAIA Academy slide system</title>
-<link rel="icon" href="../img/academy.svg">
+<link rel="icon" href="../icon.svg">
 <link rel="stylesheet" href="../deck.css">
 </head>
 <body>
@@ -14,7 +14,7 @@
 <section class="slide title" data-label="Welcome">
   <div class="kicker">SDAIA Academy · Slide system · <span class="ar">نظام الشرائح</span></div>
   <h1>Every component, on one deck</h1>
-  <p class="lead mt">The English demo: a living reference and a layout test (open with <code>?check</code>)</p>
+  <p class="lead mt">The English demo: a living reference and a layout test</p>
   <div class="meta">
     <span class="track">AI Engineering Track</span>
     <span>1600 × 900 stage</span>
@@ -26,15 +26,12 @@
 
 <section class="slide" data-label="Agenda">
   <div class="kicker">The day in one look</div>
-  <h2>Agenda: four sessions, three breaks</h2>
+  <h2>Agenda: four sessions</h2>
   <div class="agenda">
-    <div class="item now"><div><b>Session 1 · Typography and layout</b><small>Headings, bullets, columns, cards, callouts</small></div><div class="d">20 min</div></div>
-    <div class="item brk">Break · 10 minutes</div>
-    <div class="item"><div><b>Session 2 · Data</b><small>Tables, code, flows, stats, bars</small></div><div class="d">20 min</div></div>
-    <div class="item brk">Break · 20 minutes</div>
-    <div class="item"><div><b>Session 3 · Interaction</b><small>Quiz, prompts, chats, tool chips</small></div><div class="d">20 min</div></div>
-    <div class="item brk">Break · 10 minutes</div>
-    <div class="item"><div><b>Session 4 · Agents</b><small>Traces, the ladder, the lab slide</small></div><div class="d">20 min</div></div>
+    <div class="item now"><div><b>Session 1 · Typography and layout</b><small>Headings, bullets, columns, cards, callouts</small></div></div>
+    <div class="item"><div><b>Session 2 · Data</b><small>Tables, code, flows, stats, bars</small></div></div>
+    <div class="item"><div><b>Session 3 · Interaction</b><small>Quiz, prompts, chats, tool chips</small></div></div>
+    <div class="item"><div><b>Session 4 · Agents</b><small>Traces, the ladder, the lab slide</small></div></div>
   </div>
 </section>
 
@@ -119,15 +116,20 @@
     <div class="arrow frag" data-frag="b">→</div><div class="step c-coral frag" data-frag="b"><b>3 · Picked up</b>01:46</div>
     <div class="arrow frag" data-frag="c">→</div><div class="step c-purple frag" data-frag="c"><b>4 · Delivered</b>01:54</div>
   </div>
-  <div class="callout tip mt frag"><b>Fragments.</b> Add class <code>frag</code> to any element and it appears on the next key press; elements with the same <code>data-frag</code> appear together. Back hides the last step. Overview, print and <code>?check</code> show everything.</div>
+  <div class="callout tip mt frag"><b>Fragments.</b> Add class <code>frag</code> to any element and it appears on the next key press; elements with the same <code>data-frag</code> appear together. Back hides the last step. Overview and print show everything.</div>
   <aside class="notes">Use fragments instead of copying a slide four times with one more box each. The speaker notes panel (N) is keyboard only: nothing is drawn on the slide.</aside>
 </section>
 
-<section class="slide break" data-label="Break">
-  <div class="kicker">Session 1 is over</div>
-  <h1>10-minute break</h1>
-  <div class="timer" data-minutes="10"></div>
-  <p class="lead">Press T to start the timer, or set a length or a "back at" time below.</p>
+<section class="slide">
+  <div class="kicker">Breaks</div>
+  <h2>Breaks are not slides: press B</h2>
+  <div class="cols cols-3">
+    <div class="card c-teal"><h4>B opens the break screen</h4><p class="small mb0">A navy screen over the current slide with a 10-minute timer. The length field is already selected: type another number, or a "back at" time.</p></div>
+    <div class="card c-amber"><h4>Enter starts it</h4><p class="small mb0">The title and the "back at" time follow the length. T pauses and resumes.</p></div>
+    <div class="card c-coral"><h4>Esc ends it</h4><p class="small mb0">The deck is exactly where you left it. Nothing about the break is written into the deck, so the agenda lists sessions only.</p></div>
+  </div>
+  <div class="callout note mt"><b>Try it.</b> Press <b>B</b> now, type 2, press Enter, then Esc.</div>
+  <aside class="notes">Breaks used to be slides with a timer. Now the instructor calls one when the room needs it; the default is 10 minutes and the mid-day break is whatever the instructor types.</aside>
 </section>
 
 <!-- ======================= SESSION 2 ======================= -->
@@ -239,11 +241,6 @@
   </div>
 </section>
 
-<section class="slide break" data-label="Break">
-  <div class="kicker">Mid-day</div>
-  <h1>20-minute break</h1>
-  <div class="timer" data-minutes="20"></div>
-</section>
 
 <!-- ======================= SESSION 3 ======================= -->
 <section class="slide section" data-session="S3 · Interaction">
@@ -260,7 +257,7 @@
     <div class="opts">
       <div class="opt" data-k="A">.section</div>
       <div class="opt" data-k="B" data-ok>.title</div>
-      <div class="opt" data-k="C">.break</div>
+      <div class="opt" data-k="C">.lab</div>
       <div class="opt" data-k="D">.dark</div>
     </div>
     <div class="callout tip why"><b>Why.</b> Only the title slide drops the "n / N" counter; every other special slide keeps it.</div>
@@ -288,7 +285,7 @@
   <div class="kicker">Dark slide</div>
   <h2>Tool chips and a dark prompt</h2>
   <div class="tools">
-    <span><img src="../img/academy.svg" alt="">SDAIA Academy</span>
+    <span><img src="../icon.svg" alt="">SDAIA Academy</span>
     <span>ChatGPT</span><span>Claude</span><span>Gemini</span><span>Copilot</span><span>HUMAIN Chat</span>
   </div>
   <div class="prompt dark mt" data-tool="Any assistant">Explain the difference between a workflow and an agent in two sentences, then give one example of each from municipal services.</div>
@@ -299,11 +296,6 @@
   </div>
 </section>
 
-<section class="slide break" data-label="Break">
-  <div class="kicker">Session 3 is over</div>
-  <h1>10-minute break</h1>
-  <div class="timer" data-minutes="10"></div>
-</section>
 
 <!-- ======================= SESSION 4 ======================= -->
 <section class="slide section" data-session="S4 · Agents">
@@ -350,8 +342,8 @@
       <li>Copy a deck template from the skill <span class="min">3 min</span></li>
       <li>Fill in data-course, data-track and data-day <span class="min">2 min</span></li>
       <li>Write a title, a section and three content slides <span class="min">12 min</span></li>
-      <li>Open with ?check and fix every overflow <span class="min">8 min</span></li>
-      <li class="stretch">Stretch: add a break slide with a timer</li>
+      <li>Run the layout check and fix every overflow <span class="min">8 min</span></li>
+      <li class="stretch">Stretch: press B and start a two-minute break</li>
     </ul>
   </div>
 </section>
@@ -389,7 +381,7 @@
 <section class="slide section" data-label="Thank you">
   <div class="kicker">That is every component</div>
   <h1>Questions?</h1>
-  <p class="lead">Source: github.com/SDAIAAcademy/slides · Add <code>?check</code> to this URL to run the layout self-check.</p>
+  <p class="lead">Source: github.com/SDAIAAcademy/slides</p>
 </section>
 
 </div>

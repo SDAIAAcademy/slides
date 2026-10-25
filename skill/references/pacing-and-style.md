@@ -7,7 +7,7 @@ Follow these unless the user says otherwise.
 
 - **Teaching days × 4 sessions, plus one capstone-presentation day.** Three or four teaching days so far (Applied NLP: 3 + 1; the others 4 + 1). A day is about four hours.
 - **A session is about 50 minutes:** 20–25 minutes of concepts and live demos, then a **25-minute lab**. Every lab's checklist adds up to exactly 25 minutes (5 steps of 2–8 minutes plus one ✱ stretch item without a time).
-- **Breaks:** Session 1 → 10-minute break → Session 2 → 20-minute mid-day break → Session 3 → 10-minute break → Session 4. Break slides carry a timer (`.timer[data-minutes]`); the instructor can retype the length or a "back at" time live. **Never print clock times** ("9:00", "starts at 9am") anywhere: agendas, course pages and running orders show only durations and session numbers.
+- **Breaks:** a short break after sessions 1 and 3 and a longer one at mid-day, but breaks are **not slides**: the instructor presses `B` in the deck and gets a break screen over the current slide (10 minutes by default; they retype the length or a "back at" time, Enter starts it, Esc ends it). Decks contain no break slides and agendas no break rows. **Never print clock times** ("9:00", "starts at 9am") anywhere: agendas, course pages and running orders show only durations and session numbers.
 - **One case study per course:** a fictional organisation with synthetic, deterministic data (fixed seed) and deliberately planted problems, used by every session and the capstone. Fluency courses give undergraduates a co-op-trainee variant.
 - **Capstone day:** opening and expectations (rubric), final prep, then presentations across the four sessions with a running-order table (editable inputs) and a "now presenting" slide with two timers (talk and Q&A), then peer feedback, instructor review, next steps and closing. Individual capstones for fluency audiences (5 + 2 minutes); individuals or pairs for engineering (8 + 4 minutes). Capstone preparation is seeded during the last two teaching days (a lab that picks the task, a kickoff session at the end of the last day).
 - **Rubric:** five or six weighted criteria shown as bars on the course page (e.g. 25/25/20/20/10). Measured results beat claims: "results from at least two measured runs".
@@ -17,14 +17,13 @@ Follow these unless the user says otherwise.
 
 Measured over 14 decks: a teaching day has 36–58 slides (median about 48), the capstone day 23–24. A session is 8–15 slides. Speaker notes cover 7–47% of slides (the Arabic course has the most). Content slides average 75–100 words.
 
-Day opening (3–8 slides): title slide (`.slide.title` with kicker, h1, lead, meta pills including the track pill), course or day overview, a review quiz of the previous day (from Day 2 on), agenda (`.agenda` without durations), setup check on Day 1.
+Day opening (3–8 slides): title slide (`.slide.title` with kicker, h1, lead, meta pills including the track pill), course or day overview, a review quiz of the previous day (from Day 2 on), agenda (`.agenda`: the four sessions only, each with its title and a one-line summary; no durations, no break rows), setup check on Day 1.
 
 Each session:
 1. `.slide.section` with `data-session="S1 · Title"`, a kicker ("Session 1"), the h1, three outcomes (`ul.bullets.outcomes`) and the big `.sess-no`.
 2. 6–11 concept slides. Vary the form: a cards slide, a table, a flow, a code or prompt slide, a stat or bars slide, a worked example (chat, trace), a callout that says what goes wrong. One idea per slide. Prefer concrete numbers from the actual lab run over illustrative numbers.
-3. One quiz (`.quiz` with 4 options, `data-ok` on the right one and a hidden `.why`).
-4. The lab slide (`.slide.lab.top`): `.lab-tag` "Lab 2.1 · 25 min", h2, `.nb` link to the notebook or lab page, a one-line description and a `.checklist` whose `.min` badges sum to 25, plus one `li.stretch`.
-5. A break slide after sessions 1, 2 and 3.
+3. One quiz (`.quiz` with 4 options, `data-ok` on the right one and a hidden `.why`). Vary where the right answer sits: over a deck the `data-ok` letters spread across A–D (the Director noticed earlier decks put it on B almost every time).
+4. The lab slide (`.slide.lab`): `.cols.cols-2.mid` with `.lab-tag` "Lab 2.1 · 25 min", h2, `.nb` link to the notebook or lab page and a one-line description on the left; a `.checklist` whose `.min` badges sum to 25, plus one `li.stretch`, on the right.
 
 Day close (2–4 slides): wrap-up (what was built today, three "remember" cards), capstone pointer, "tomorrow" teaser, and a dark closing slide.
 
@@ -51,13 +50,14 @@ Shared helpers live in one module (`nlp_utils.py`, `agentkit.py`, `de_utils.py`)
 
 ```
 index.html          course page (page.css): header with track pill, "one case study" cards, schedule paragraph,
-                    one .day block per day (day-head + session table with lab links and break rows),
+                    one .day block per day (day-head + session table with lab links),
                     capstone + rubric bars, outcomes + setup, footer
 slides/day1.html …  one deck per day (dayN.html; or D{d}_{n}_slug.html for one deck per session)
 labs/               notebooks or lab pages, data, helpers, capstone kit, labs/README.md
 README.md           English: title (bilingual), track, one-paragraph pitch, day table with slide links,
-                    the session/break rhythm, slide keys, "How the course is organised", repository tree,
-                    Sources (grouped, every claim's URL), licences of adapted material
+                    the session rhythm, the case study, "How the course is organised", repository tree, labs,
+                    Sources (grouped, every claim's URL), licences of adapted material. About the course only:
+                    nothing about the slide system, its keys or its checks, and no local paths
 .gitattributes      *.html/*.css/*.js/*.md text eol=lf
 .nojekyll           GitHub Pages serves the repo root of main
 ```
@@ -66,13 +66,13 @@ Commits: one per deliverable chunk, imperative subject ("Add Day 2: labs and sli
 
 ## Quality gates (all of them, every time)
 
-1. `?check` on every deck in headless Chrome (`scripts/check.mjs`): "OK" or fix the overflow by tightening words, not by shrinking type below `.small`.
+1. `node scripts/check.mjs <repo>` (every deck in headless Chrome, fragments revealed): "OK" or fix the overflow by tightening words, not by shrinking type below `.small`.
 2. Screenshots of a sample of slides reviewed by eye (`scripts/check.mjs --shots`): logo visible, no overlaps, bidi glitches, contrast.
 3. Lab arithmetic: each lab slide checklist sums to 25; lab-page step times match the slide.
 4. Every link resolves (relative files, Colab URLs, external sources).
 5. Every solution notebook runs end to end in quick mode; numbers quoted on slides match the run.
 6. Phone-width check of the course page and lab pages (no horizontal scroll at 400px).
-7. Grep for forbidden terms: clock times, team wording when the capstone is individual, placeholders (`YOUR-ORG`), unpublished sources.
+7. `node scripts/qa.mjs <repo>` and a grep for forbidden terms: clock times, break slides, break rows or durations in agendas, quiz answers piling on one letter, team wording when the capstone is individual, placeholders (`YOUR-ORG`), unpublished sources, local paths.
 8. After pushing: Pages status "built", then load the live course page and one deck.
 
 ## Recurring problems to avoid

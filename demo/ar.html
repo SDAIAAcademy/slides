@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>عرض تجريبي · نظام شرائح أكاديمية سدايا</title>
-<link rel="icon" href="../img/academy.svg">
+<link rel="icon" href="../icon.svg">
 <link rel="stylesheet" href="../deck.css">
 </head>
 <body>
@@ -14,7 +14,7 @@
 <section class="slide title" data-label="الترحيب">
   <div class="kicker">أكاديمية سدايا · نظام الشرائح</div>
   <h1>كل المكوّنات في عرض واحد</h1>
-  <p class="lead mt">النسخة العربية: مرجع حيّ واختبار للتخطيط (افتحه مع <code>?check</code>)</p>
+  <p class="lead mt">النسخة العربية: مرجع حيّ واختبار للتخطيط</p>
   <div class="meta">
     <span class="track">مسار الطلاقة في البيانات والذكاء الاصطناعي</span>
     <span>مسرح 1600 × 900</span>
@@ -26,15 +26,12 @@
 
 <section class="slide" data-label="جدول اليوم">
   <div class="kicker">اليوم في لمحة</div>
-  <h2>جدول اليوم: أربع جلسات وثلاث استراحات</h2>
+  <h2>جدول اليوم: أربع جلسات</h2>
   <div class="agenda">
-    <div class="item now"><div><b>الجلسة 1 · الخط والتخطيط</b><small>العناوين والنقاط والأعمدة والبطاقات والتنبيهات</small></div><div class="d">20 دقيقة</div></div>
-    <div class="item brk">استراحة · 10 دقائق</div>
-    <div class="item"><div><b>الجلسة 2 · البيانات</b><small>الجداول والكود والمسارات والأرقام</small></div><div class="d">20 دقيقة</div></div>
-    <div class="item brk">استراحة · 20 دقيقة</div>
-    <div class="item"><div><b>الجلسة 3 · التفاعل</b><small>الاختبار والأوامر والمحادثات وشارات الأدوات</small></div><div class="d">20 دقيقة</div></div>
-    <div class="item brk">استراحة · 10 دقائق</div>
-    <div class="item"><div><b>الجلسة 4 · الوكلاء</b><small>الآثار والسُّلّم وشريحة التمرين</small></div><div class="d">20 دقيقة</div></div>
+    <div class="item now"><div><b>الجلسة 1 · الخط والتخطيط</b><small>العناوين والنقاط والأعمدة والبطاقات والتنبيهات</small></div></div>
+    <div class="item"><div><b>الجلسة 2 · البيانات</b><small>الجداول والكود والمسارات والأرقام</small></div></div>
+    <div class="item"><div><b>الجلسة 3 · التفاعل</b><small>الاختبار والأوامر والمحادثات وشارات الأدوات</small></div></div>
+    <div class="item"><div><b>الجلسة 4 · الوكلاء</b><small>الآثار والسُّلّم وشريحة التمرين</small></div></div>
   </div>
 </section>
 
@@ -119,15 +116,20 @@
     <div class="arrow frag" data-frag="b">←</div><div class="step c-coral frag" data-frag="b"><b>3 · الاستلام</b>01:46</div>
     <div class="arrow frag" data-frag="c">←</div><div class="step c-purple frag" data-frag="c"><b>4 · التسليم</b>01:54</div>
   </div>
-  <div class="callout tip mt frag"><b>الأجزاء.</b> أضف الصنف <code>frag</code> إلى أيّ عنصر فيظهر مع الضغطة التالية؛ والعناصر التي تتشارك <code>data-frag</code> تظهر معًا. الرجوع يُخفي آخر خطوة. النظرة العامة والطباعة و<code>?check</code> تعرض كل شيء.</div>
+  <div class="callout tip mt frag"><b>الأجزاء.</b> أضف الصنف <code>frag</code> إلى أيّ عنصر فيظهر مع الضغطة التالية؛ والعناصر التي تتشارك <code>data-frag</code> تظهر معًا. الرجوع يُخفي آخر خطوة. النظرة العامة والطباعة تعرضان كل شيء.</div>
   <aside class="notes">استخدم الأجزاء بدل تكرار الشريحة أربع مرات بصندوق إضافي في كل مرة. لوحة ملاحظات المدرّب (N) تعمل بلوحة المفاتيح فقط ولا يُرسم شيء على الشريحة.</aside>
 </section>
 
-<section class="slide break" data-label="استراحة">
-  <div class="kicker">انتهت الجلسة 1</div>
-  <h1>استراحة 10 دقائق</h1>
-  <div class="timer" data-minutes="10"></div>
-  <p class="lead">اضغط T لتشغيل المؤقّت، أو حدّد المدة أو ساعة العودة أدناه.</p>
+<section class="slide">
+  <div class="kicker">الاستراحات</div>
+  <h2>الاستراحة ليست شريحة: اضغط B</h2>
+  <div class="cols cols-3">
+    <div class="card c-teal"><h4>B يفتح شاشة الاستراحة</h4><p class="small mb0">شاشة كحلية فوق الشريحة الحالية بمؤقّت 10 دقائق. حقل المدة محدَّد مسبقًا: اكتب رقمًا آخر، أو ساعة العودة.</p></div>
+    <div class="card c-amber"><h4>Enter يبدأ العدّ</h4><p class="small mb0">العنوان وساعة العودة يتبعان المدة. T يوقف العدّ ويستأنفه.</p></div>
+    <div class="card c-coral"><h4>Esc ينهي الاستراحة</h4><p class="small mb0">يبقى العرض حيث تركته. لا يُكتب شيء عن الاستراحة في العرض، لذا يعرض جدول اليوم الجلسات فقط.</p></div>
+  </div>
+  <div class="callout note mt"><b>جرّب.</b> اضغط <b>B</b> الآن، واكتب 2، ثم Enter، ثم Esc.</div>
+  <aside class="notes">كانت الاستراحات شرائح بمؤقّت. الآن يستدعيها المدرّب حين تحتاجها القاعة؛ الافتراضي 10 دقائق، واستراحة منتصف اليوم ما يكتبه المدرّب.</aside>
 </section>
 
 <!-- ======================= الجلسة 2 ======================= -->
@@ -213,11 +215,6 @@
   </div>
 </section>
 
-<section class="slide break" data-label="استراحة">
-  <div class="kicker">منتصف اليوم</div>
-  <h1>استراحة 20 دقيقة</h1>
-  <div class="timer" data-minutes="20"></div>
-</section>
 
 <!-- ======================= الجلسة 3 ======================= -->
 <section class="slide section" data-session="ج3 · التفاعل">
@@ -234,7 +231,7 @@
     <div class="opts">
       <div class="opt" data-k="أ">.section</div>
       <div class="opt" data-k="ب" data-ok>.title</div>
-      <div class="opt" data-k="ج">.break</div>
+      <div class="opt" data-k="ج">.lab</div>
       <div class="opt" data-k="د">.dark</div>
     </div>
     <div class="callout tip why"><b>لماذا.</b> شريحة العنوان وحدها تُسقط العدّاد؛ كل الشرائح الخاصة الأخرى تحتفظ به.</div>
@@ -262,7 +259,7 @@
   <div class="kicker">شريحة داكنة</div>
   <h2>شارات الأدوات وأمر داكن</h2>
   <div class="tools">
-    <span><img src="../img/academy.svg" alt="">أكاديمية سدايا</span>
+    <span><img src="../icon.svg" alt="">أكاديمية سدايا</span>
     <span>ChatGPT</span><span>Claude</span><span>Gemini</span><span>Copilot</span><span>HUMAIN Chat</span>
   </div>
   <div class="prompt dark mt" data-tool="أيّ مساعد">اشرح الفرق بين سير العمل والوكيل في جملتين، ثم أعطِ مثالًا واحدًا لكلٍّ منهما من خدمات البلديات.</div>
@@ -273,11 +270,6 @@
   </div>
 </section>
 
-<section class="slide break" data-label="استراحة">
-  <div class="kicker">انتهت الجلسة 3</div>
-  <h1>استراحة 10 دقائق</h1>
-  <div class="timer" data-minutes="10"></div>
-</section>
 
 <!-- ======================= الجلسة 4 ======================= -->
 <section class="slide section" data-session="ج4 · الوكلاء">
@@ -324,8 +316,8 @@
       <li>انسخ قالب عرض من المهارة <span class="min">3 دقائق</span></li>
       <li>املأ data-course وdata-track وdata-day <span class="min">2 دقيقة</span></li>
       <li>اكتب شريحة عنوان وقسمًا وثلاث شرائح محتوى <span class="min">12 دقيقة</span></li>
-      <li>افتح مع ?check وأصلح كل تجاوز <span class="min">8 دقائق</span></li>
-      <li class="stretch">إضافي: أضف شريحة استراحة بمؤقّت</li>
+      <li>شغّل فحص التخطيط وأصلح كل تجاوز <span class="min">8 دقائق</span></li>
+      <li class="stretch">إضافي: اضغط B وابدأ استراحة دقيقتين</li>
     </ul>
   </div>
 </section>
@@ -363,7 +355,7 @@
 <section class="slide section" data-label="شكرًا">
   <div class="kicker">هذه كل المكوّنات</div>
   <h1>أسئلة؟</h1>
-  <p class="lead">المصدر: <span class="en">github.com/SDAIAAcademy/slides</span> · أضف <code>?check</code> إلى الرابط لتشغيل الفحص الذاتي.</p>
+  <p class="lead">المصدر: <span class="en">github.com/SDAIAAcademy/slides</span></p>
 </section>
 
 </div>

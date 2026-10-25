@@ -1,5 +1,6 @@
 #!/usr/bin/env node
-// Layout self-check (and optional screenshots) for every deck of a course, in headless Chrome.
+// Layout check (and optional screenshots) for every deck of a course, in headless Chrome. Each deck is opened with
+// ?check, which makes deck.js measure every slide (fragments revealed, after the fonts load) and write a report.
 //   node check.mjs [repo-dir] [--shots] [--only day2]
 // Prints one line per deck: "day1.html: CHECK 56 slides | OK" or the list of overflowing slides,
 // plus the footer text (track · course) and whether the logo rendered. With --shots it saves
@@ -36,7 +37,7 @@ for (const f of decks) {
   const dom = run(["--dump-dom", fileUrl(path.join(slidesDir, f)) + "?check"]);
   const report = (dom.match(/<pre id="check-report">([\s\S]*?)<\/pre>/) || [])[1] || "NO REPORT (deck.js did not run: offline, or a script error)";
   const footer = (dom.match(/<div class="track"><i><\/i>([^<]*)</) || [])[1] || "NO FOOTER";
-  const logos = (dom.match(/<div class="logo"><svg/g) || []).length;
+  const logos = (dom.match(/<div class="logo"><svg/g) || []).length - (dom.includes("slide break live") ? 1 : 0);  // the break screen has one too
   const n = Number((report.match(/CHECK (\d+)/) || [])[1] || 0);
   const ok = report.trim().endsWith("OK");
   if (!ok) failed++;

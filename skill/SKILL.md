@@ -1,6 +1,6 @@
 ---
 name: sdaia-course
-description: Build a new SDAIA Academy course end to end on the Academy's shared slide system (https://sdaiaacademy.github.io/slides/): research the topic, check overlap with the existing Academy courses, propose outlines in the Academy format (teaching days of four sessions with a lab each, breaks, a capstone day), then build the repository (course page, decks, labs, README with sources), run the quality gates and publish it on GitHub Pages under SDAIAAcademy. Use whenever the user asks to create, plan, outline, scope or build an Academy course, bootcamp or workshop, add a day or session to one, convert existing material (an outline, old slides, story decks) into Academy slides, or asks which track a course belongs to. Also use for fixing or extending an existing Academy course deck so it stays consistent with the system.
+description: Build a new SDAIA Academy course end to end on the Academy's shared slide system (https://sdaiaacademy.github.io/slides/): research the topic, check overlap with the existing Academy courses, propose outlines in the Academy format (teaching days of four sessions with a lab each, a capstone day), then build the repository (course page, decks, labs, README with sources), run the quality gates and publish it on GitHub Pages under SDAIAAcademy. Use whenever the user asks to create, plan, outline, scope or build an Academy course, bootcamp or workshop, add a day or session to one, convert existing material (an outline, old slides, story decks) into Academy slides, or asks which track a course belongs to. Also use for fixing or extending an existing Academy course deck so it stays consistent with the system.
 ---
 
 # Building an SDAIA Academy course
@@ -11,7 +11,7 @@ https://github.com/SDAIAAcademy/slides). Content lives in the course repo; the e
 system. Read these before doing anything:
 
 - `references/pacing-and-style.md`: the shape of a course, a deck and a lab; voice; quality gates; recurring problems.
-- `references/catalog.md`: every existing course, session by session, and the five tracks (for the overlap check).
+- `references/catalog.md`: the five tracks (what each one is for) and every existing course, session by session (for the overlap check).
 - `references/components.md`: every component of the slide system, the course page and the lab page.
 - `templates/`: deck (en/ar), capstone deck (en/ar), course page (en/ar), lab page (en/ar), README, OUTLINE, `py2nb.py`.
 - `scripts/`: `scaffold.mjs` (repo skeleton), `check.mjs` (layout self-check and screenshots), `qa.mjs` (content QA).
@@ -70,10 +70,10 @@ Order of work, one commit per step, imperative subjects, the `Co-Authored-By` tr
 1. **Scaffold**: `node scripts/scaffold.mjs --out <dir> --repo <repo> --title "…" --title-ar "…" --track <key> --lang en|ar --days N --labs notebooks|pages`, then `git init -b main`. Fill the course page and README headers from the outline.
 2. **Labs infrastructure** (engineering courses): `labs/prepare_data.py` (stdlib only, fixed seed, planted defects, an instructor answer key), the helpers module, `00_setup_check.ipynb`, `requirements-colab.txt`, `.env.example`, `uv` project with `uv.lock`, a mock or cache so every lab runs without a paid key. Fluency courses: `labs/tools/prepare_files.py` renders the synthetic file pack (PDF via headless Chrome, DOCX, XLSX, TXT) and `labs/instructor/answer_keys.md`.
 3. **Per day, labs first, then the deck**: write the lab sources (`labs/_src/D{d}_{n}_slug.py`, `# BEGIN SOLUTION` markers) or lab pages, build and **run every solution notebook in quick mode**, then write the deck from the real outputs. Delegate a day's labs to one agent with a strict spec (file names, helpers, checklist with minutes summing to 25, quick mode, safety-net cells, checkpoint questions, carry-forward); keep the decks with you or give the agent the exemplar deck and `components.md`. Tell running agents about shared-file changes. Fill speaker notes on at least a third of the slides. Use fragments (`class="frag"`) for build-ups instead of repeated slides. Never make a lab depend on the same day's earlier lab without a fallback.
-4. **Capstone deck** from the capstone template: running order with editable inputs, "now presenting" slides with two timers, breaks, review, what next.
+4. **Capstone deck** from the capstone template: running order with editable inputs, "now presenting" slides with two timers, review, what next.
 5. **Course page and README**: the day tables with Colab or lab links, rubric bars, outcomes, setup, and the README with a grouped **Sources** section containing every URL used.
-6. **Quality gates**, all of them: `node scripts/check.mjs <repo> --shots` (OK on every deck; look at a dozen screenshots), `node scripts/qa.mjs <repo>` (lab minutes, links, forbidden strings, placeholders), every solution notebook end to end, phone-width check of the course page, a grep for clock times, team wording when the capstone is individual, `YOUR-ORG`, unpublished sources. Fix wording before shrinking type.
-7. **Publish**: delete `OUTLINE.md`; `gh repo create SDAIAAcademy/<repo> --public --source . --push`; enable Pages (`gh api -X POST repos/SDAIAAcademy/<repo>/pages -f "source[branch]=main" -f "source[path]=/"`); set the homepage and description; wait for the build (`gh api repos/SDAIAAcademy/<repo>/pages/builds/latest`); load the live course page and one deck in headless Chrome. Then add the course to `references/catalog.md` and to the list on the slide system's `index.html` and `README.md` (repo `SDAIAAcademy/slides`) and push that too.
+6. **Quality gates**, all of them: `node scripts/check.mjs <repo> --shots` (OK on every deck; look at a dozen screenshots), `node scripts/qa.mjs <repo>` (lab minutes, links, forbidden strings, placeholders, break slides, agenda rows, the spread of quiz answers), every solution notebook end to end, phone-width check of the course page, a grep for clock times, team wording when the capstone is individual, `YOUR-ORG`, unpublished sources. Fix wording before shrinking type.
+7. **Publish**: delete `OUTLINE.md`; `gh repo create SDAIAAcademy/<repo> --public --source . --push`; enable Pages (`gh api -X POST repos/SDAIAAcademy/<repo>/pages -f "source[branch]=main" -f "source[path]=/"`); set the homepage and description; wait for the build (`gh api repos/SDAIAAcademy/<repo>/pages/builds/latest`); load the live course page and one deck in headless Chrome. Then add the course to `references/catalog.md` in the skill (repo `SDAIAAcademy/slides`) and push that too.
 8. **Report** honestly: what was run and verified, what was not (full-size notebooks on a GPU, live API runs without a key, pages unreachable from this machine), synthetic data, and the risks the instructor should check before the first cohort.
 
 ## Converting existing material
@@ -87,7 +87,8 @@ and passes `check.mjs`. Keep every fact, number and sentence.
 
 ## Rules that came from the Director's feedback
 
-- Durations, never clock times. Break slides carry timers (10 min, 20 min mid-day) the instructor can retype.
+- Durations, never clock times. Breaks are not slides: the instructor presses `B` in any deck for the break screen (10 minutes by default, retyped live). Agenda slides list the four sessions only: no durations, no break rows.
+- Quiz answers: `data-ok` lands on a different letter each time; across a deck the right answers spread over A–D (never "always B").
 - Every lab is 25 minutes with a checklist that sums to 25 and one stretch item; labs never assume an earlier lab was finished.
 - One case study per course, synthetic and deterministic; individual capstones for fluency audiences.
 - Tool names are examples; re-verify names, renames and deprecations for the current month before writing them; prefer Saudi-relevant tools with real logos.
@@ -95,3 +96,4 @@ and passes `check.mjs`. Keep every fact, number and sentence.
 - Free hosted models only unless told otherwise; no local model downloads; everything runs on a laptop CPU or Colab.
 - Speaker notes are keyboard only (N) and carry the instructor's script; nothing is drawn on the slide for them.
 - Changes to the shared engine or theme go to `SDAIAAcademy/slides`, never to a copy inside a course.
+- A course README is about the course and its content only: title, track, pitch, day table, rhythm, case study, how it is organised, repository tree, labs, sources. It does not describe the slide system, its keys or its checks (the engine's own README does), and never contains local paths.

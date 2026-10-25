@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Day {{DAY}} · {{COURSE}}</title>
-<link rel="icon" href="https://sdaiaacademy.github.io/slides/img/academy.svg">
+<link rel="icon" href="https://sdaiaacademy.github.io/slides/icon.svg">
 <link rel="stylesheet" href="https://sdaiaacademy.github.io/slides/deck.css">
 </head>
 <body>
@@ -28,13 +28,10 @@
   <div class="kicker">Today</div>
   <h2>{{DAY_TITLE}}</h2>
   <div class="agenda">
-    <div class="item now"><div><b>Session 1 · {{S1_TITLE}}</b><small>{{S1_SUMMARY}}</small></div><div class="d">Lab {{DAY}}.1</div></div>
-    <div class="item brk">Break</div>
-    <div class="item"><div><b>Session 2 · {{S2_TITLE}}</b><small>{{S2_SUMMARY}}</small></div><div class="d">Lab {{DAY}}.2</div></div>
-    <div class="item brk">Long break</div>
-    <div class="item"><div><b>Session 3 · {{S3_TITLE}}</b><small>{{S3_SUMMARY}}</small></div><div class="d">Lab {{DAY}}.3</div></div>
-    <div class="item brk">Break</div>
-    <div class="item"><div><b>Session 4 · {{S4_TITLE}}</b><small>{{S4_SUMMARY}}</small></div><div class="d">Lab {{DAY}}.4</div></div>
+    <div class="item now"><div><b>Session 1 · {{S1_TITLE}}</b><small>{{S1_SUMMARY}}</small></div></div>
+    <div class="item"><div><b>Session 2 · {{S2_TITLE}}</b><small>{{S2_SUMMARY}}</small></div></div>
+    <div class="item"><div><b>Session 3 · {{S3_TITLE}}</b><small>{{S3_SUMMARY}}</small></div></div>
+    <div class="item"><div><b>Session 4 · {{S4_TITLE}}</b><small>{{S4_SUMMARY}}</small></div></div>
   </div>
 </section>
 
@@ -85,9 +82,10 @@
   <div class="quiz">
     <p class="lead">A question that tests the session's key distinction?</p>
     <div class="opts">
+      <!-- data-ok marks the right option: put it on a different letter in every quiz, so the deck spreads A–D evenly -->
       <div class="opt" data-k="A">Distractor that sounds right</div>
-      <div class="opt" data-k="B" data-ok>The correct answer</div>
-      <div class="opt" data-k="C">Distractor</div>
+      <div class="opt" data-k="B">Distractor</div>
+      <div class="opt" data-k="C" data-ok>The correct answer</div>
       <div class="opt" data-k="D">Distractor</div>
     </div>
     <div class="callout tip why"><b>Why.</b> One sentence that explains the right answer and why the tempting distractor fails.</div>
@@ -114,11 +112,6 @@
   <aside class="notes">Circulate. Typical problems: … If a participant did not finish an earlier lab, point them to the fallback in the notebook.</aside>
 </section>
 
-<section class="slide break" data-label="Break">
-  <div class="kicker">Session 1 is over</div>
-  <h1>10-minute break</h1>
-  <div class="timer" data-minutes="10"></div>
-</section>
 
 <!-- ======================= SESSION 2 ======================= -->
 <section class="slide section" data-session="S2 · {{S2_TITLE}}">
@@ -130,11 +123,6 @@
 
 <!-- concept slides, a quiz, the lab slide -->
 
-<section class="slide break" data-label="Break">
-  <div class="kicker">Mid-day</div>
-  <h1>20-minute break</h1>
-  <div class="timer" data-minutes="20"></div>
-</section>
 
 <!-- ======================= SESSION 3 ======================= -->
 <section class="slide section" data-session="S3 · {{S3_TITLE}}">
@@ -146,11 +134,6 @@
 
 <!-- concept slides, a quiz, the lab slide -->
 
-<section class="slide break" data-label="Break">
-  <div class="kicker">Session 3 is over</div>
-  <h1>10-minute break</h1>
-  <div class="timer" data-minutes="10"></div>
-</section>
 
 <!-- ======================= SESSION 4 ======================= -->
 <section class="slide section" data-session="S4 · {{S4_TITLE}}">

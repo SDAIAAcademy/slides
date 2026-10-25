@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>اليوم {{DAY}} · {{COURSE_AR}}</title>
-<link rel="icon" href="https://sdaiaacademy.github.io/slides/img/academy.svg">
+<link rel="icon" href="https://sdaiaacademy.github.io/slides/icon.svg">
 <link rel="stylesheet" href="https://sdaiaacademy.github.io/slides/deck.css">
 </head>
 <body>
@@ -28,13 +28,10 @@
   <div class="kicker">اليوم</div>
   <h2>{{DAY_TITLE}}</h2>
   <div class="agenda">
-    <div class="item now"><div><b>الجلسة 1 · {{S1_TITLE}}</b><small>{{S1_SUMMARY}}</small></div><div class="d">التمرين {{DAY}}.1</div></div>
-    <div class="item brk">استراحة</div>
-    <div class="item"><div><b>الجلسة 2 · {{S2_TITLE}}</b><small>{{S2_SUMMARY}}</small></div><div class="d">التمرين {{DAY}}.2</div></div>
-    <div class="item brk">استراحة طويلة</div>
-    <div class="item"><div><b>الجلسة 3 · {{S3_TITLE}}</b><small>{{S3_SUMMARY}}</small></div><div class="d">التمرين {{DAY}}.3</div></div>
-    <div class="item brk">استراحة</div>
-    <div class="item"><div><b>الجلسة 4 · {{S4_TITLE}}</b><small>{{S4_SUMMARY}}</small></div><div class="d">التمرين {{DAY}}.4</div></div>
+    <div class="item now"><div><b>الجلسة 1 · {{S1_TITLE}}</b><small>{{S1_SUMMARY}}</small></div></div>
+    <div class="item"><div><b>الجلسة 2 · {{S2_TITLE}}</b><small>{{S2_SUMMARY}}</small></div></div>
+    <div class="item"><div><b>الجلسة 3 · {{S3_TITLE}}</b><small>{{S3_SUMMARY}}</small></div></div>
+    <div class="item"><div><b>الجلسة 4 · {{S4_TITLE}}</b><small>{{S4_SUMMARY}}</small></div></div>
   </div>
 </section>
 
@@ -86,9 +83,10 @@
   <div class="quiz">
     <p class="lead">سؤال يختبر التمييز الأساسي في الجلسة؟</p>
     <div class="opts">
+      <!-- data-ok تحدّد الخيار الصحيح: ضعها على حرف مختلف في كل اختبار حتى تتوزّع الإجابات بين أ وب وج ود -->
       <div class="opt" data-k="أ">خيار مُشتِّت يبدو صحيحًا</div>
-      <div class="opt" data-k="ب" data-ok>الإجابة الصحيحة</div>
-      <div class="opt" data-k="ج">خيار مُشتِّت</div>
+      <div class="opt" data-k="ب">خيار مُشتِّت</div>
+      <div class="opt" data-k="ج" data-ok>الإجابة الصحيحة</div>
       <div class="opt" data-k="د">خيار مُشتِّت</div>
     </div>
     <div class="callout tip why"><b>لماذا.</b> جملة واحدة تشرح الإجابة الصحيحة ولماذا يفشل الخيار المُغري.</div>
@@ -115,11 +113,6 @@
   <aside class="notes">تجوّل بين المشاركين. المشكلات المعتادة: … إن لم يُكمل مشارك تمرينًا سابقًا، وجّهه إلى البديل في صفحة التمرين.</aside>
 </section>
 
-<section class="slide break" data-label="استراحة">
-  <div class="kicker">انتهت الجلسة 1</div>
-  <h1>استراحة 10 دقائق</h1>
-  <div class="timer" data-minutes="10"></div>
-</section>
 
 <!-- ======================= الجلسة 2 ======================= -->
 <section class="slide section" data-session="ج2 · {{S2_TITLE}}">
@@ -131,11 +124,6 @@
 
 <!-- شرائح المفاهيم، ثم اختبار، ثم شريحة التمرين -->
 
-<section class="slide break" data-label="استراحة">
-  <div class="kicker">منتصف اليوم</div>
-  <h1>استراحة 20 دقيقة</h1>
-  <div class="timer" data-minutes="20"></div>
-</section>
 
 <!-- ======================= الجلسة 3 ======================= -->
 <section class="slide section" data-session="ج3 · {{S3_TITLE}}">
@@ -147,11 +135,6 @@
 
 <!-- شرائح المفاهيم، ثم اختبار، ثم شريحة التمرين -->
 
-<section class="slide break" data-label="استراحة">
-  <div class="kicker">انتهت الجلسة 3</div>
-  <h1>استراحة 10 دقائق</h1>
-  <div class="timer" data-minutes="10"></div>
-</section>
 
 <!-- ======================= الجلسة 4 ======================= -->
 <section class="slide section" data-session="ج4 · {{S4_TITLE}}">
