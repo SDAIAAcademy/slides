@@ -57,16 +57,16 @@ prompt → context → harness → loop → graph. Prerequisite: Applied NLP or 
 ## Modern Data Engineering (`data-engineering`, ai-engineering, English)
 
 4 days × 4 sessions + capstone day. Case study: Qafila, a fictional quick-commerce grocery platform (Riyadh, Jeddah,
-Dammam); one persona (Khalid) and one order followed through every deck. Stack: DuckDB, Polars, dlt, dbt, Iceberg,
-Spark, Pandera, Dagster, ODCS contracts; labs without pandas. Concept sessions use illustrated "story" decks (a course
-extension); tool sessions are walkthrough notebooks; the capstone deck uses the standard engine.
+Dammam); one persona (Khalid) and one order followed through every deck. Audience: fresh CS graduates (Python and basic
+SQL). Stack: DuckDB, Polars, dlt, dbt, Iceberg, Spark, Pandera, Dagster. One deck per day with hand-drawn boards (`.art`,
+`.board`, a course extension in `assets/course.css`); longer tool walkthrough notebooks are optional reading.
 
-- Before Day 1: setup check · SQL window functions (self-paced)
-- Day 1 Land: course introduction · warehouse, lake, lakehouse (illustrated story) · storage for analytics (rows vs columns; Parquet) · batch ingestion (dlt) · change data capture and load strategies (MERGE, SCD2)
-- Day 2 Model: bronze to silver (Polars) · dimensional modeling · dbt: transformation as software · testing and data quality (Pandera)
-- Day 3 Scale: open table formats and the lakehouse (Iceberg) · distributed processing with Spark · streaming fundamentals · real-time pipelines into the lakehouse
-- Day 4 Operate: orchestration (Dagster) · observability and data contracts · governance, security and privacy (PDPL, NDMO classification) · data engineering for AI (embeddings, text-to-SQL) + capstone kickoff
+- Day 1 Store and query: the job and the platform (OLTP/OLAP, warehouse, lake, lakehouse, ELT) · analytical SQL with DuckDB · window functions · files for analytics (Parquet)
+- Day 2 Ingest and clean: batch ingestion by hand · ingestion with dlt · changes and history (CDC, MERGE, SCD2) · bronze to silver with Polars
+- Day 3 Model and test: dimensional modeling · dbt · data quality (dbt tests, Pandera) · orchestration with Dagster
+- Day 4 Scale and production: lakehouse with Iceberg · Spark · streaming · governance (PDPL, NDMO classification) + capstone kickoff
 - Day 5: capstone presentations
+- Not taught here: embeddings and vector search (Applied NLP)
 
 ## Overlap rules of thumb
 
